@@ -37,7 +37,6 @@ class MedicalHistoryTest extends TestCase
     }
     /** @test */
     public function changeMedicalHistory(){
-        $this->withoutExceptionHandling();
         $this->createMedicalHistory();
         $to_edit = MedicalHistory::first();
         $response = $this->patch('/change-medicalHistory/'.$to_edit->id);
@@ -45,7 +44,6 @@ class MedicalHistoryTest extends TestCase
     }
     /** @test */
     public function removeMedicalHistory(){
-        $this->withoutExceptionHandling();
         $this->createMedicalHistory();
         $to_delete = MedicalHistory::first();
         $response=$this->delete('/remove-medicalHistory/'.$to_delete->id);

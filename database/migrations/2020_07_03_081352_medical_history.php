@@ -9,9 +9,10 @@ class MedicalHistory extends Migration
     public function up()
     {
         Schema::create('MedicalHistory',function (Blueprint $table){
+            $table->id();
             $table->string('medic_id');
-            $table->string('first_name');
             $table->string('premedical_status');
+            $table->string('candidate_id');
             $table->string('premedical_status_date');
             $table->string('final_medical_test');
             $table->string('predepature_medical_tests');

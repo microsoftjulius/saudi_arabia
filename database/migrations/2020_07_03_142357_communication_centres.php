@@ -15,7 +15,7 @@ class CommunicationCentres extends Migration
         Schema::create('CommunicationCentres',function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('communicationCentre_id');
-            $table->string('name');
+            $table->string('centre_name');
             $table->string('contact');
             $table->string('location');
             $table->string('updated_by');

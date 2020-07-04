@@ -29,7 +29,7 @@ Route::delete('/remove-parents/{id}','ParentsController@removeParents');
 Route::post('/create-medicalHistory','MedicalHistoryController@createMedicalHistory');
 Route::get('/get-medicalHistory','MedicalHistoryController@getMedicalHistory');
 Route::patch('/change-medicalHistory/{id}','MedicalHistoryController@changeMedicalHistory');
-Route::delete('/remove-medicalHistory/{id}','MedicalHistoryController@removeMedicalHistory');
+Route::delete('/remove-medicalHistory/{id}','MedicalHistoryController@deleteMedicalHistory');
 
 Route::post('/create-abroadCompany','AbroadCompanyController@createAbroadCompany');
 Route::get('/get-abroadCompany','AbroadCompanyController@getAbroadCompany');

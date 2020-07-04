@@ -14,7 +14,7 @@ class CommunicationCentresController extends Controller
     protected function validateCommunicationCentres(){
         return request()->validate([
             'communicationCentre_id'=>'required',
-            'name'=>'required',
+            'centre_name'=>'required',
             'contact'=>'required',
             'location'=>'required',
             'updated_by'=>'required',
@@ -24,7 +24,7 @@ class CommunicationCentresController extends Controller
         return CommunicationCentresResource::collection(CommunicationCentres::all());
     }
     public function changeCommunicationCentres($id){
-        return CommunicationCentres::where('id',$id)->update(array('communicationCentres_id'=>'CC01'));
+        return CommunicationCentres::where('id',$id)->update(array('communicationCentre_id'=>'CC01'));
     }
     public function removeCommunicationCentres($id){
         return CommunicationCentres::where('id',$id)->delete();
