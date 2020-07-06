@@ -15,11 +15,10 @@ class Solutions extends Migration
     {
         Schema::create('Solutions',function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('solution_id');
             $table->string('solution_name');
             $table->string('reg_code');
             $table->string('final_report_print_out');
-            $table->string('updated_by');
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }

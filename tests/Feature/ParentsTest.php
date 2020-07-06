@@ -21,10 +21,10 @@ class ParentsTest extends TestCase
             'other_name'=>'',
             'contact'=>'0756321479',
             'address'=>'Nansana',
-            'updated_by'=>'Mr. Kikolokomba David',
+            'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('Parents',['parent_id'=>'P01']);
+        $this->assertDatabaseHas('Parents',['id'=>'1']);
     }
     /** @test */
     public function getParents(){
@@ -39,7 +39,7 @@ class ParentsTest extends TestCase
         $this->createParents();
         $to_edit = Parents::first();
         $response = $this->patch('/change-parents/'.$to_edit->id);
-        $this->assertEquals('P01', Parents::first()->parent_id);
+        $this->assertEquals('2', Parents::first()->id);
     }
     /** @test */
     public function removeParents(){

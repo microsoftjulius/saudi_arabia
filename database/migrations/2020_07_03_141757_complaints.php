@@ -15,7 +15,6 @@ class Complaints extends Migration
     {
         Schema::create('Complaints',function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('complaint_id');
             $table->string('complaint_type');
             $table->string('complaint_details');
             $table->string('reported_date');
@@ -23,7 +22,7 @@ class Complaints extends Migration
             $table->string('reported_time');
             $table->string('complaint_status');
             $table->string('evidence');
-            $table->string('updated_by');
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }

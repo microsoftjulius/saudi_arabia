@@ -10,13 +10,12 @@ class Employers extends Migration
     {
         Schema::create('Employers',function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('employer_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('other_name')->nullable();
             $table->string('contact');
             $table->string('address');
-            $table->string('updated_by');
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }

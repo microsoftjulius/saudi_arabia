@@ -10,13 +10,12 @@ class Parents extends Migration
     {
         Schema::create('Parents',function (Blueprint $table){
             $table->id();
-            $table->string('parent_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('other_name')->nullable();
             $table->string('contact');
             $table->string('address');
-            $table->string('updated_by');
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }

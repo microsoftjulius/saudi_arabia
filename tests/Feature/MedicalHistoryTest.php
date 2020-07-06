@@ -23,10 +23,10 @@ class MedicalHistoryTest extends TestCase
             'predepature_medical_tests'=>'checked',
             'covid19_certificate'=>'checked',
             'covid19_certificate_date'=>'12/012/2020',
-            'updated_by'=>'Mr. Kikolokomba David',
+            'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('MedicalHistory',['medic_id'=>'MH01']);
+        $this->assertDatabaseHas('MedicalHistory',['id'=>'1']);
     }
     /** @test */
     public function getMedicalHistory(){
@@ -40,7 +40,7 @@ class MedicalHistoryTest extends TestCase
         $this->createMedicalHistory();
         $to_edit = MedicalHistory::first();
         $response = $this->patch('/change-medicalHistory/'.$to_edit->id);
-        $this->assertEquals('MH01', MedicalHistory::first()->medic_id);
+        $this->assertEquals('2', MedicalHistory::first()->id);
     }
     /** @test */
     public function removeMedicalHistory(){

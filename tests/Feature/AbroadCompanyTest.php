@@ -23,10 +23,10 @@ class AbroadCompanyTest extends TestCase
             'visa_number'=>'123947563',
             'visa_date'=>'12/05/2021',
             'signature'=>'mmmmmmm',
-            'updated_by'=>'Husanat Kakia',
+            'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('AbroadCompany',['abroadCompany_id'=>'AB01']);
+        $this->assertDatabaseHas('AbroadCompany',['id'=>'1']);
     }
     /** @test */
     public function getAbroadCompany(){
@@ -41,7 +41,7 @@ class AbroadCompanyTest extends TestCase
         $this->createAbroadCompany();
         $to_edit = AbroadCompany::first();
         $response = $this->patch('/change-abroadCompany/'.$to_edit->id);
-        $this->assertEquals('AB01', AbroadCompany::first()->abroadCompany_id);
+        $this->assertEquals('2', AbroadCompany::first()->id);
     }
     /** @test */
     public function removeAbroadCompany(){

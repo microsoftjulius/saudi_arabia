@@ -13,7 +13,6 @@ class AbroadCompanyController extends Controller
     }
     protected function validateAbroadCompany(){
         return request()->validate([
-            'abroadCompany_id'=>'required',
             'company_name'=>'required',
             'contract'=>'required',
             'location'=>'required',
@@ -28,7 +27,7 @@ class AbroadCompanyController extends Controller
         return AbroadCompanyResource::collection(AbroadCompany::all());
     }
     public function changeAbroadCompany($id){
-        return AbroadCompany::where('id',$id)->update(array('abroadCompany_id'=>'AB01'));
+        return AbroadCompany::where('id',$id)->update(array('id'=>'2'));
     }
     public function removeAbroadCompany($id){
         return AbroadCompany::where('id',$id)->delete();

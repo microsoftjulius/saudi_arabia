@@ -10,7 +10,6 @@ class MedicalHistory extends Migration
     {
         Schema::create('MedicalHistory',function (Blueprint $table){
             $table->id();
-            $table->string('medic_id');
             $table->string('premedical_status');
             $table->string('candidate_id');
             $table->string('premedical_status_date');
@@ -18,7 +17,7 @@ class MedicalHistory extends Migration
             $table->string('predepature_medical_tests');
             $table->string('covid19_certificate');
             $table->string('covid19_certificate_date');
-            $table->string('updated_by');
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }

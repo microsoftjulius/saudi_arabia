@@ -13,7 +13,6 @@ class EmployersController extends Controller
     }
     protected function validateEmployers(){
         return request()->validate([
-            'employer_id'=>'required',
             'first_name'=>'required',
             'last_name'=>'required',
             'other_name'=>'',
@@ -26,7 +25,7 @@ class EmployersController extends Controller
         return EmployersResource::collection(Employers::all());
     }
     public function changeEmployers($id){
-        return Employers::where('id',$id)->update(array('employer_id'=>'E01'));
+        return Employers::where('id',$id)->update(array('id'=>'2'));
     }
     public function removeEmployers($id){
         return Employers::where('id',$id)->delete();

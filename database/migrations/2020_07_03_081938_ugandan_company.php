@@ -15,13 +15,12 @@ class UgandanCompany extends Migration
     {
         Schema::create('UgandanCompany',function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('UGCompany_id');
             $table->string('company_name');
             $table->string('license');
             $table->string('location');
             $table->string('contact');
             $table->string('email');
-            $table->string('updated_by');
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }

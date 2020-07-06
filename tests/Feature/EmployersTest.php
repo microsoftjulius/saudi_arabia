@@ -21,10 +21,10 @@ class EmployersTest extends TestCase
             'other_name'=>'',
             'contact'=>'0332479641',
             'address'=>'Saudi Arabia Capital',
-            'updated_by'=>'Mr. Kikolokomba David',
+            'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('Employers',['employer_id'=>'E01']);
+        $this->assertDatabaseHas('Employers',['id'=>'1']);
     }
     /** @test */
     public function getEmployers(){
@@ -39,7 +39,7 @@ class EmployersTest extends TestCase
         $this->createEmployers();
         $to_edit = Employers::first();
         $response = $this->patch('/change-employers/'.$to_edit->id);
-        $this->assertEquals('E01', Employers::first()->employer_id);
+        $this->assertEquals('2', Employers::first()->id);
     }
     /** @test */
     public function removeEmployers(){

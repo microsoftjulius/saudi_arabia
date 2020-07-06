@@ -30,10 +30,10 @@ class candidatesTest extends TestCase
             'education_level'=>'Degree',
             'contact'=>'0772456975',
             'consent_letter'=>'checked',
-            'updated_by'=>'Licious',
+            'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('candidates',['candidate_id'=>'CD01']);
+        $this->assertDatabaseHas('candidates',['id'=>'2']);
     }
     /** @test */
     public function getCandidates(){
@@ -48,7 +48,7 @@ class candidatesTest extends TestCase
         $this->createCandidates();
         $to_edit = candidates::first();
         $response = $this->patch('/change-candidates/'.$to_edit->id);
-        $this->assertEquals('CD01', candidates::first()->candidate_id);
+        $this->assertEquals('2', candidates::first()->id);
     }
     /** @test */
     public function removeCandidates(){

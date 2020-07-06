@@ -13,7 +13,6 @@ class SolutionsController extends Controller
     }
     protected function validateSolutions(){
         return request()->validate([
-            'solution_id'=>'required',
             'solution_name'=>'required',
             'reg_code'=>'required',
             'final_report_print_out'=>'required',
@@ -24,7 +23,7 @@ class SolutionsController extends Controller
         return SolutionsResource::collection(Solutions::all());
     }
     public function changeSolutions($id){
-        return Solutions::where('id',$id)->update(array('solution_id'=>'S01'));
+        return Solutions::where('id',$id)->update(array('id'=>'2'));
     }
     public function removeSolutions($id){
         return Solutions::where('id',$id)->delete();

@@ -13,7 +13,6 @@ class ComplaintsController extends Controller
     }
     protected function validateComplaints(){
         return request()->validate([
-            'complaint_id'=>'required',
             'complaint_type'=>'required',
             'complaint_details'=>'required',
             'reported_date'=>'required',
@@ -28,7 +27,7 @@ class ComplaintsController extends Controller
         return ComplaintsResource::collection(Complaints::all());
     }
     public function changeComplaints($id){
-        return Complaints::where('id',$id)->update(array('complaint_id'=>'C01'));
+        return Complaints::where('id',$id)->update(array('id'=>'2'));
     }
     public function removeComplaints($id){
         return Complaints::where('id',$id)->delete();
