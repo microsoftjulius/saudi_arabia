@@ -13,7 +13,6 @@ class MedicalHistoryController extends Controller
     }
     protected function validateMedicalHistory(){
         return request()->validate([
-            'medic_id'=>'required',
             'candidate_id'=>'required',
             'premedical_status'=>'required',
             'premedical_status_date'=>'required',
@@ -28,7 +27,7 @@ class MedicalHistoryController extends Controller
         return MedicalHistoryResource::collection(MedicalHistory::all());
     }
     public function changeMedicalHistory($id){
-        return MedicalHistory::where('id',$id)->update(array('medic_id'=>'MH01'));
+        return MedicalHistory::where('id',$id)->update(array('id'=>'2'));
     }
     public function deleteMedicalHistory($id){
         return MedicalHistory::where('id',$id)->delete();

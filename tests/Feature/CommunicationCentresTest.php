@@ -19,10 +19,10 @@ class CommunicationCentresTest extends TestCase
             'centre_name'=>'Ministry of labour',
             'contact'=>'0312479652',
             'location'=>'Kampala, Uganda. P.O.Box 4216',
-            'updated_by'=>'Mr. Kikolokomba David',
+            'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('CommunicationCentres',['communicationCentre_id'=>'CC01']);
+        $this->assertDatabaseHas('CommunicationCentres',['id'=>'2']);
     }
     /** @test */
     public function getCommunicationCentres(){
@@ -37,7 +37,7 @@ class CommunicationCentresTest extends TestCase
         $this->createCommunicationCentres();
         $to_edit = CommunicationCentres::first();
         $response = $this->patch('/change-communicationCentres/'.$to_edit->id);
-        $this->assertEquals('CC01', CommunicationCentres::first()->communicationCentre_id);
+        $this->assertEquals('2', CommunicationCentres::first()->id);
     }
     /** @test */
     public function removeCommunicationCentres(){

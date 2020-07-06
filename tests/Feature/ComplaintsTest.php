@@ -23,10 +23,10 @@ class ComplaintsTest extends TestCase
             'reported_time'=>'10:00 a.m',
             'complaint_status'=>'Resolved',
             'evidence'=>'0332479641',
-            'updated_by'=>'Mr. Kikolokomba David',
+            'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('Complaints',['complaint_id'=>'C01']);
+        $this->assertDatabaseHas('Complaints',['id'=>'1']);
     }
     /** @test */
     public function getComplaints(){
@@ -41,7 +41,7 @@ class ComplaintsTest extends TestCase
         $this->createComplaints();
         $to_edit = Complaints::first();
         $response = $this->patch('/change-complaints/'.$to_edit->id);
-        $this->assertEquals('C01', Complaints::first()->complaint_id);
+        $this->assertEquals('2', Complaints::first()->id);
     }
     /** @test */
     public function removeComplaints(){

@@ -13,7 +13,6 @@ class UgandanCompanyController extends Controller
     }
     protected function validateUgandanCompany(){
         return request()->validate([
-            'UGCompany_id'=>'required',
             'company_name'=>'required',
             'license'=>'required',
             'location'=>'required',
@@ -26,7 +25,7 @@ class UgandanCompanyController extends Controller
         return UgandanCompanyResource::collection(UgandanCompany::all());
     }
     public function changeUgandanCompany($id){
-        return UgandanCompany::where('id',$id)->update(array('UGCompany_id'=>'UG01'));
+        return UgandanCompany::where('id',$id)->update(array('id'=>'2'));
     }
     public function removeUgandanCompany($id){
         return UgandanCompany::where('id',$id)->delete();

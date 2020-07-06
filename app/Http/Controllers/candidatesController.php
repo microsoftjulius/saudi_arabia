@@ -13,7 +13,6 @@ class candidatesController extends Controller
     }
     protected function validateCandidates(){
         return request()->validate([
-            'candidate_id'=>'required',
             'employer_id'=>'required',
             'parent_id'=>'required',
             'abroadCompany_id'=>'required',
@@ -35,7 +34,7 @@ class candidatesController extends Controller
         return candidatesResource::collection(candidates::all());
     }
     public function changeCandidates($id){
-        return candidates::where('id',$id)->update(array('candidate_id'=>'CD01'));
+        return candidates::where('id',$id)->update(array('id'=>'2'));
     }
     public function removeCandidates($id){
         return candidates::where('id',$id)->delete();

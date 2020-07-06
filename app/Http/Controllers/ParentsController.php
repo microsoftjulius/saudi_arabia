@@ -13,7 +13,6 @@ class ParentsController extends Controller
     }
     protected function validateParents(){
         return request()->validate([
-            'parent_id'=>'required',
             'first_name'=>'required',
             'last_name'=>'required',
             'other_name'=>'',
@@ -26,7 +25,7 @@ class ParentsController extends Controller
         return ParentsResource::collection(Parents::all());
     }
     public function changeParents($id){
-        return Parents::where('id',$id)->update(array('parent_id'=>'P01'));
+        return Parents::where('id',$id)->update(array('id'=>'2'));
     }
     public function removeParents($id){
         return Parents::where('id',$id)->delete();

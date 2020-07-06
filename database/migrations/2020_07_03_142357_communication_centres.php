@@ -14,11 +14,10 @@ class CommunicationCentres extends Migration
     {
         Schema::create('CommunicationCentres',function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('communicationCentre_id');
             $table->string('centre_name');
             $table->string('contact');
             $table->string('location');
-            $table->string('updated_by');
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }

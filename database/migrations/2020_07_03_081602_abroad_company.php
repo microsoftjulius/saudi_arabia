@@ -15,7 +15,6 @@ class AbroadCompany extends Migration
     {
         Schema::create('AbroadCompany',function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('abroadCompany_id');
             $table->string('company_name');
             $table->string('contract');
             $table->string('location');
@@ -23,7 +22,7 @@ class AbroadCompany extends Migration
             $table->string('visa_number');
             $table->string('visa_date');
             $table->string('signature');
-            $table->string('updated_by');
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }

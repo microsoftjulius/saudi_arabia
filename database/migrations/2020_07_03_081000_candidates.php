@@ -15,11 +15,10 @@ class Candidates extends Migration
     {
         Schema::create('Candidates', function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('candidate_id');
-            $table->string('parent_id');
-            $table->string('employer_id');
-            $table->string('UGCompany_id');
-            $table->string('abroadCompany_id');
+            $table->integer('parent_id');
+            $table->integer('employer_id');
+            $table->integer('ug_company_id');
+            $table->integer('abroad_company_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('other_name')->nullable();
@@ -30,7 +29,7 @@ class Candidates extends Migration
             $table->string('education_level');
             $table->string('occupation');
             $table->string('consent_letter');
-            $table->string('updated_by');
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }
