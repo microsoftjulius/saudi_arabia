@@ -13,7 +13,7 @@ class UgandanCompany extends Migration
      */
     public function up()
     {
-        Schema::create('UgandanCompany',function (Blueprint $table){
+        Schema::create('ugandan_companies',function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('company_name');
             $table->string('license');
@@ -21,6 +21,7 @@ class UgandanCompany extends Migration
             $table->string('contact');
             $table->string('email');
             $table->integer('updated_by');
+            $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class UgandanCompany extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('UgandanCompany');
+        Schema::dropIfExists('ugandan_companies');
     }
 }

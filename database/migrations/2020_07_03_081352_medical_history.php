@@ -8,7 +8,7 @@ class MedicalHistory extends Migration
 {
     public function up()
     {
-        Schema::create('MedicalHistory',function (Blueprint $table){
+        Schema::create('medical_histories',function (Blueprint $table){
             $table->id();
             $table->string('premedical_status');
             $table->string('candidate_id');
@@ -18,6 +18,7 @@ class MedicalHistory extends Migration
             $table->string('covid19_certificate');
             $table->string('covid19_certificate_date');
             $table->integer('updated_by');
+            $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class MedicalHistory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('MedicalHistory');
+        Schema::dropIfExists('medical_histories');
     }
 }

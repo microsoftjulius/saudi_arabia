@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Solutions extends Migration
+class CreateCandidatesCurrentLocationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class Solutions extends Migration
      */
     public function up()
     {
-        Schema::create('solutions',function (Blueprint $table){
-            $table->bigIncrements('id');
-            $table->string('solution_name');
-            $table->string('reg_code');
-            $table->string('final_report_print_out');
-            $table->integer('updated_by');
+        // ['candidate_id','longitude','latitude']
+        Schema::create('candidates_current_locations', function (Blueprint $table) {
+            $table->id();
+            $table->integer('candidate_id');
+            $table->polygon('longitude');
+            $table->polygon('latitude');
             $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class Solutions extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solutions');
+        Schema::dropIfExists('candidates_current_locations');
     }
 }

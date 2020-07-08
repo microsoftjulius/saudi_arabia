@@ -13,7 +13,7 @@ class Candidates extends Migration
      */
     public function up()
     {
-        Schema::create('Candidates', function (Blueprint $table){
+        Schema::create('candidates', function (Blueprint $table){
             $table->bigIncrements('id');
             $table->integer('parent_id');
             $table->integer('employer_id');
@@ -22,6 +22,7 @@ class Candidates extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('other_name')->nullable();
+            $table->string('duration')->nullable();
             $table->string('place_of_birth');
             $table->string('date_of_birth');
             $table->string('next_of_kin');
@@ -30,6 +31,7 @@ class Candidates extends Migration
             $table->string('occupation');
             $table->string('consent_letter');
             $table->integer('updated_by');
+            $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
     }
@@ -41,6 +43,6 @@ class Candidates extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Candidates');
+        Schema::dropIfExists('candidates');
     }
 }

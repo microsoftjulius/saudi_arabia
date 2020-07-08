@@ -71,3 +71,7 @@ Route::get('/get-roles','RolesController@getRoles');
 Route::patch('/change-roles/{id}','RolesController@changeRoles');
 Route::delete('/remove-roles/{id}','RolesController@removeRoles');
 
+Route::post('/report-a-sickness','MedicalStatusController@validateReport');
+
+Route::post('/create-insuarance-policy','InsurancePolicyController@validateInsurancePolicy');
+route::post('/register-candidates-current-location','CandidatesCurrentLocation@registerGirlsCurrentLocation');
