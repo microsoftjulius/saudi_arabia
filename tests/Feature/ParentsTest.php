@@ -15,10 +15,9 @@ class ParentsTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $response = $this->post('/create-parents', [
-            'parent_id'=>'P01',
-            'first_name'=>'Faith',
-            'last_name'=>'Nalumansi',
-            'other_name'=>'',
+            'parent_first_name'=>'Faith',
+            'parent_last_name'=>'Nalumansi',
+            'parent_other_name'=>'',
             'contact'=>'0756321479',
             'address'=>'Nansana',
             'updated_by'=>1,

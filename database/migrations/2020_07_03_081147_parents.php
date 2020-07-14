@@ -10,9 +10,9 @@ class Parents extends Migration
     {
         Schema::create('Parents',function (Blueprint $table){
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('other_name')->nullable();
+            $table->string('parent_first_name');
+            $table->string('parent_last_name');
+            $table->string('parent_other_name')->nullable();
             $table->string('contact');
             $table->string('address');
             $table->integer('updated_by');

@@ -15,7 +15,6 @@ class CommunicationCentresResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'communicationCentre_id'=>$this->communicationCentre_id,
             'name'=>$this->name,
             'contact'=>$this->contact,
             'location'=>$this->location,

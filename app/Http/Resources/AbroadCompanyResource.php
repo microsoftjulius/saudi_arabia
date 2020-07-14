@@ -15,7 +15,6 @@ class AbroadCompanyResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'abroadCompany_id'=>$this->abroadCompany_id,
             'company_name'=>$this->company_name,
             'contract'=>$this->contract,
             'location'=>$this->location,

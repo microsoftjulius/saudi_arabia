@@ -8,24 +8,27 @@ use App\Http\Resources\SolutionsResource;
 
 class SolutionsController extends Controller
 {
-    public function createSolutions(){
+    private function createSolutions(){
         return Solutions::create($this->validateSolutions());
     }
     protected function validateSolutions(){
-        return request()->validate([
-            'solution_name'=>'required',
-            'reg_code'=>'required',
-            'final_report_print_out'=>'required',
-            'updated_by'=>'required',
-        ]);
+        if(empty(request()->solution_name)){
+            return redirect()->back()->withErrors("Please enter the solution to the complaint");
+        }elseif(empty(request()->reg_code)){
+            return redirect()->back()->withErrors("Please enter your reg code");
+        }elseif(empty(request()->final_report_print_out)){
+            return redirect()->back()->withErrors("Please attach final report print out");
+        }else{
+            return $this->createSolutions();
+        }
     }
-    public function getSolutions(){
+    protected function getSolutions(){
         return SolutionsResource::collection(Solutions::all());
     }
-    public function changeSolutions($id){
+    protected function changeSolutions($id){
         return Solutions::where('id',$id)->update(array('id'=>'2'));
     }
-    public function removeSolutions($id){
+    protected function removeSolutions($id){
         return Solutions::where('id',$id)->delete();
     }
 }

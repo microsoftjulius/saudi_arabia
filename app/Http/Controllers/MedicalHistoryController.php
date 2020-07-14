@@ -8,28 +8,33 @@ use App\Http\Resources\MedicalHistoryResource;
 
 class MedicalHistoryController extends Controller
 {
-    public function createMedicalHistory(){
+    private function createMedicalHistory(){
         return MedicalHistory::create($this->validateMedicalHistory());
     }
     protected function validateMedicalHistory(){
-        return request()->validate([
-            'candidate_id'=>'required',
-            'premedical_status'=>'required',
-            'premedical_status_date'=>'required',
-            'final_medical_test'=>'required',
-            'predepature_medical_tests'=>'required',
-            'covid19_certificate'=>'required',
-            'covid19_certificate_date'=>'required',
-            'updated_by'=>'required',
-        ]);
+        if(empty(request()->premedical_status)){
+            return redirect()->back()->withErrors("Please enter your premedical status");
+        }elseif(empty(request()->premedical_status_date)){
+            return redirect()->back()->withErrors("Please enter your premedical status date");
+        }elseif(empty(request()->final_medical_test)){
+            return redirect()->back()->withErrors("Please attach your final medical test");
+        }elseif(empty(request()->predepature_medical_tests)){
+            return redirect()->back()->withErrors("Please attach your predepature medical tests");
+        }elseif(empty(request()->covid19_certificate)){
+            return redirect()->back()->withErrors("Please attach your covid19 certificate");
+        }elseif(empty(request()->covid19_certificate_date)){
+            return redirect()->back()->withErrors("Please enter your covid19 certificate date");
+        }else{
+            return $this->createMedicalHistory();
+        }
     }
-    public function getMedicalHistory(){
+    protected function getMedicalHistory(){
         return MedicalHistoryResource::collection(MedicalHistory::all());
     }
-    public function changeMedicalHistory($id){
+    protected function changeMedicalHistory($id){
         return MedicalHistory::where('id',$id)->update(array('id'=>'2'));
     }
-    public function deleteMedicalHistory($id){
+    protected function deleteMedicalHistory($id){
         return MedicalHistory::where('id',$id)->delete();
     }
 }

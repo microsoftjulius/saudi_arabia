@@ -11,13 +11,13 @@ class MedicalHistory extends Migration
         Schema::create('MedicalHistory',function (Blueprint $table){
             $table->id();
             $table->string('premedical_status');
-            $table->string('candidate_id');
             $table->string('premedical_status_date');
             $table->string('final_medical_test');
             $table->string('predepature_medical_tests');
             $table->string('covid19_certificate');
             $table->string('covid19_certificate_date');
             $table->integer('updated_by');
+            $table->softdeletes('deleted at');
             $table->timestamps();
         });
     }

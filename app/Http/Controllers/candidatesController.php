@@ -8,35 +8,48 @@ use App\Http\Resources\candidatesResource;
 
 class candidatesController extends Controller
 {
-    public function createCandidates(){
+    private function createCandidates($parent_id){
+
         return candidates::create($this->validateCandidates());
     }
     protected function validateCandidates(){
-        return request()->validate([
-            'employer_id'=>'required',
-            'parent_id'=>'required',
-            'abroadCompany_id'=>'required',
-            'UGCompany_id'=>'required',
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'other_name'=>'',
-            'date_of_birth'=>'required',
-            'place_of_birth'=>'required',
-            'next_of_kin'=>'required',
-            'occupation'=>'required',
-            'education_level'=>'required',
-            'contact'=>'required',
-            'consent_letter'=>'required',
-            'updated_by'=>'required',
-        ]);
+        if(empty(request()->candidate_first_name)){
+            return redirect()->back()->withErrors("Please enter your first name");
+        }elseif(empty(request()->candidate_last_name)){
+            return redirect()->back()->withErrors("Please enter your last name");
+        }elseif(empty(request()->date_of_birth)){
+            return redirect()->back()->withErrors("Please enter your date of birth");
+        }elseif(empty(request()->place_of_birth)){
+            return redirect()->back()->withErrors("Please enter your place of birth");
+        }elseif(empty(request()->next_of_kin)){
+            return redirect()->back()->withErrors("Please enter your next of kin");
+        }elseif(empty(request()->occupation)){
+            return redirect()->back()->withErrors("Please enter your occupation");
+        }elseif(empty(request()->education_level)){
+            return redirect()->back()->withErrors("Please attach your education forms");
+        }elseif(empty(request()->contact)){
+            return redirect()->back()->withErrors("Please enter contact");
+        }elseif(empty(request()->parent_first_name)){
+            return redirect()->back()->withErrors("Please enter your parent's first name");
+        }elseif(empty(request()->parent_last_name)){
+            return redirect()->back()->withErrors("Please enter your parent's last name ");
+        }elseif(empty(request()->parent_contact)){
+            return redirect()->back()->withErrors("Please enter your parent's contact");
+        }elseif(empty(request()->parent_address)){
+            return redirect()->back()->withErrors("Please enter your parent's address");
+        }elseif(empty(request()->consent_letter)){
+            return redirect()->back()->withErrors("Please attach your consent_letter");
+        }else{
+            return $this->createParents();
+        }
     }
-    public function getCandidates(){
+    protected function getCandidates(){
         return candidatesResource::collection(candidates::all());
     }
-    public function changeCandidates($id){
+    protected function changeCandidates($id){
         return candidates::where('id',$id)->update(array('id'=>'2'));
     }
-    public function removeCandidates($id){
+    protected function removeCandidates($id){
         return candidates::where('id',$id)->delete();
     }
 }

@@ -23,6 +23,7 @@ class Complaints extends Migration
             $table->string('complaint_status');
             $table->string('evidence');
             $table->integer('updated_by');
+            $table->softdeletes('deleted at');
             $table->timestamps();
         });
     }

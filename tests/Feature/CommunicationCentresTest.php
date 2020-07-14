@@ -15,7 +15,6 @@ class CommunicationCentresTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $response = $this->post('/create-communicationCentres', [
-            'communicationCentre_id'=>'CC01',
             'centre_name'=>'Ministry of labour',
             'contact'=>'0312479652',
             'location'=>'Kampala, Uganda. P.O.Box 4216',

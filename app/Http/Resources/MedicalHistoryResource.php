@@ -15,8 +15,6 @@ class MedicalHistoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'medic_id'=>$this->medic_id,
-            'candidate_id'=>$this->candidate_id,
             'premedical_status'=>$this->premedical_status,
             'premedical_status_date'=>$this->premedical_status_date,
             'final_medical_test'=>$this->final_medical_test,

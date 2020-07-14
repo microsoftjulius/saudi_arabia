@@ -8,24 +8,27 @@ use App\Http\Resources\CommunicationCentresResource;
 
 class CommunicationCentresController extends Controller
 {
-    public function createCommunicationCentres(){
+    private function createCommunicationCentres(){
         return CommunicationCentres::create($this->validateCommunicationCentres());
     }
     protected function validateCommunicationCentres(){
-        return request()->validate([
-            'centre_name'=>'required',
-            'contact'=>'required',
-            'location'=>'required',
-            'updated_by'=>'required',
-        ]);
+        if(empty(request()->centre_name)){
+            return redirect()->back()->withErrors("Please enter your centre_name");
+        }elseif(empty(request()->contact)){
+            return redirect()->back()->withErrors("Please enter your contact");
+        }elseif(empty(request()->location)){
+            return redirect()->back()->withErrors("Please enter your location");
+        }else{
+            return $this->createCommunicationCentres();
+        }
     }
-    public function getCommunicationCentres(){
+    protected function getCommunicationCentres(){
         return CommunicationCentresResource::collection(CommunicationCentres::all());
     }
-    public function changeCommunicationCentres($id){
+    protected function changeCommunicationCentres($id){
         return CommunicationCentres::where('id',$id)->update(array('id'=>'2'));
     }
-    public function removeCommunicationCentres($id){
+    protected function removeCommunicationCentres($id){
         return CommunicationCentres::where('id',$id)->delete();
     }
 }

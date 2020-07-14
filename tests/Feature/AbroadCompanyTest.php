@@ -15,7 +15,6 @@ class AbroadCompanyTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $response = $this->post('/create-abroadCompany', [
-            'abroadCompany_id'=>'AB01',
             'company_name'=>'Saudi Group Of Companies',
             'contract'=>'Available',
             'location'=>'Saudi Arabia',

@@ -19,6 +19,7 @@ class Solutions extends Migration
             $table->string('reg_code');
             $table->string('final_report_print_out');
             $table->integer('updated_by');
+            $table->softdeletes('deleted at');
             $table->timestamps();
         });
     }

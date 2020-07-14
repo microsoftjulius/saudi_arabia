@@ -15,8 +15,6 @@ class MedicalHistoryTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $response = $this->post('/create-medicalHistory', [
-            'medic_id'=>'MH01',
-            'candidate_id'=>'CD01',
             'premedical_status'=>'checked',
             'premedical_status_date'=>'12/04/2020',
             'final_medical_test'=>'checked',

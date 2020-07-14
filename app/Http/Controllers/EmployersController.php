@@ -8,26 +8,29 @@ use App\Http\Resources\EmployersResource;
 
 class EmployersController extends Controller
 {
-    public function createEmployers(){
+    private function createEmployers(){
         return Employers::create($this->validateEmployers());
     }
     protected function validateEmployers(){
-        return request()->validate([
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'other_name'=>'',
-            'contact'=>'required',
-            'address'=>'required',
-            'updated_by'=>'required',
-        ]);
+        if(empty(request()->employer_first_name)){
+            return redirect()->back()->withErrors("Please enter your first name");
+        }elseif(empty(request()->employer_last_name)){
+            return redirect()->back()->withErrors("Please enter your last name");
+        }elseif(empty(request()->contact)){
+            return redirect()->back()->withErrors("Please enter your contact");
+        }elseif(empty(request()->address)){
+            return redirect()->back()->withErrors("Please enter your address");
+        }else{
+            return $this->createEmployers();
+        }
     }
-    public function getEmployers(){
+    protected function getEmployers(){
         return EmployersResource::collection(Employers::all());
     }
-    public function changeEmployers($id){
+    protected function changeEmployers($id){
         return Employers::where('id',$id)->update(array('id'=>'2'));
     }
-    public function removeEmployers($id){
+    protected function removeEmployers($id){
         return Employers::where('id',$id)->delete();
     }
 }

@@ -8,28 +8,36 @@ use App\Http\Resources\AbroadCompanyResource;
 
 class AbroadCompanyController extends Controller
 {
-    public function createAbroadCompany(){
+    private function createAbroadCompany(){
         return AbroadCompany::create($this->validateAbroadCompany());
     }
     protected function validateAbroadCompany(){
-        return request()->validate([
-            'company_name'=>'required',
-            'contract'=>'required',
-            'location'=>'required',
-            'job_types'=>'required',
-            'visa_number'=>'required',
-            'visa_date'=>'required',
-            'signature'=>'required',
-            'updated_by'=>'required',
-        ]);
+        if(empty(request()->company_name)){
+            return redirect()->back()->withErrors("Please enter a company name to continue");
+        }elseif(empty(request()->contract)){
+            return redirect()->back()->withErrors("Please enter the contract");
+        }elseif(empty(request()->location)){
+            return redirect()->back()->withErrors("Please enter the location");
+        }elseif(empty(request()->job_types)){
+            return redirect()->back()->withErrors("Please enter the type of job your applying for");
+        }elseif(empty(request()->visa_number)){
+            return redirect()->back()->withErrors("Please enter the visa_number");
+        }elseif(empty(request()->signature)){
+            return redirect()->back()->withErrors("Please sign");
+        }elseif(empty(request()->contract)){
+            return redirect()->back()->withErrors("Please enter the contract");
+        }
+        else{
+            return $this->createAbroadCompany();
+        }
     }
-    public function getAbroadCompany(){
+    protected function getAbroadCompany(){
         return AbroadCompanyResource::collection(AbroadCompany::all());
     }
-    public function changeAbroadCompany($id){
+    protected function changeAbroadCompany($id){
         return AbroadCompany::where('id',$id)->update(array('id'=>'2'));
     }
-    public function removeAbroadCompany($id){
+    protected function removeAbroadCompany($id){
         return AbroadCompany::where('id',$id)->delete();
     }
 }

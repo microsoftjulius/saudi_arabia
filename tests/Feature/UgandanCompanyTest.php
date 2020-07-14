@@ -15,7 +15,6 @@ class UgandanCompanyTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $response = $this->post('/create-ugandanCompany', [
-        'UGCompany_id'=>'UG01',
         'company_name'=>'Middle East Company',
         'license'=>'01246UG',
         'location'=>'Plot 247 Bugolobi',

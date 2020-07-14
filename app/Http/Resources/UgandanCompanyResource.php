@@ -15,7 +15,6 @@ class UgandanCompanyResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'UGCompany_id'=>$this->UGCompany_id,
             'company_name'=>$this->company_name,
             'license'=>$this->license,
             'location'=>$this->location,

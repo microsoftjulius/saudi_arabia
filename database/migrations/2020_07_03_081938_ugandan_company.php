@@ -21,6 +21,7 @@ class UgandanCompany extends Migration
             $table->string('contact');
             $table->string('email');
             $table->integer('updated_by');
+            $table->softdeletes('deleted at');
             $table->timestamps();
         });
     }

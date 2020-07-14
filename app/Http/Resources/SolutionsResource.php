@@ -15,7 +15,6 @@ class SolutionsResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'solution_id'=>$this->solution_id,
             'solution_name'=>$this->solution_name,
             'reg_code'=>$this->reg_code,
             'final_report_print_out'=>$this->final_report_print_out,

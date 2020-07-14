@@ -11,23 +11,13 @@ class ParentsController extends Controller
     public function createParents(){
         return Parents::create($this->validateParents());
     }
-    protected function validateParents(){
-        return request()->validate([
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'other_name'=>'',
-            'contact'=>'required',
-            'address'=>'required',
-            'updated_by'=>'required',
-        ]);
-    }
-    public function getParents(){
+    protected function getParents(){
         return ParentsResource::collection(Parents::all());
     }
-    public function changeParents($id){
+    protected function changeParents($id){
         return Parents::where('id',$id)->update(array('id'=>'2'));
     }
-    public function removeParents($id){
+    protected function removeParents($id){
         return Parents::where('id',$id)->delete();
     }
 }

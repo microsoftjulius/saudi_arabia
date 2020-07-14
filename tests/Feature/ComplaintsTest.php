@@ -15,7 +15,6 @@ class ComplaintsTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $response = $this->post('/create-complaints', [
-            'complaint_id'=>'C01',
             'complaint_type'=>'Rape',
             'complaint_details'=>'Rape',
             'reported_date'=>'12/04/2020',

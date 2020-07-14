@@ -15,10 +15,9 @@ class EmployersTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $response = $this->post('/create-employers', [
-            'employer_id'=>'E01',
-            'first_name'=>'Hannat',
-            'last_name'=>'Shukrah',
-            'other_name'=>'',
+            'employer_first_name'=>'Hannat',
+            'employer_last_name'=>'Shukrah',
+            'employer_other_name'=>'',
             'contact'=>'0332479641',
             'address'=>'Saudi Arabia Capital',
             'updated_by'=>1,
