@@ -22,7 +22,8 @@ class AbroadCompany extends Migration
             $table->string('visa_number');
             $table->string('visa_date');
             $table->string('signature');
-            $table->integer('updated_by');
+            $table->integer('updated_by')->nullable();
+            $table->integer('created_by');
             $table->softdeletes('deleted at');
             $table->timestamps();
         });
