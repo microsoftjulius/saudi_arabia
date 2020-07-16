@@ -16,6 +16,7 @@ class Parents extends Migration
             $table->string('contact');
             $table->string('address');
             $table->integer('updated_by');
+            $table->softdeletes('deleted at');
             $table->timestamps();
         });
     }

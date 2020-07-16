@@ -25,7 +25,8 @@ class Candidates extends Migration
             $table->string('education_level');
             $table->string('occupation');
             $table->string('consent_letter');
-            $table->integer('updated_by');
+            $table->integer('updated_by')->nullable();
+            $table->integer('created_by');
             $table->softdeletes('deleted at');
             $table->timestamps();
         });

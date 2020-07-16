@@ -8,8 +8,18 @@ use App\Http\Resources\UgandanCompanyResource;
 
 class UgandanCompanyController extends Controller
 {
+    public function __construct(){
+        $this->authenticated_instance = new AuthenticatedController; 
+    }
     private function createUgandanCompany(){
-        return UgandanCompany::create($this->validateUgandanCompany());
+        $ugandan_company = new UgandanCompany;
+        $ugandan_company->company_name = request()->company_name;
+        $ugandan_company->license      = request()->license;
+        $ugandan_company->location     = request()->location;
+        $ugandan_company->contact      = request()->contact;
+        $ugandan_company->email        = request()->email;
+        $abroad_company->created_by    = $this->authenticated_instance->getAuthenticatedUser();
+        $ugandan_company->save();
     }
     protected function validateUgandanCompany(){
         if(empty(request()->company_name)){
@@ -30,9 +40,16 @@ class UgandanCompanyController extends Controller
         return UgandanCompanyResource::collection(UgandanCompany::all());
     }
     protected function changeUgandanCompany($id){
-        return UgandanCompany::where('id',$id)->update(array('id'=>'2'));
+        return UgandanCompany::find($id)->update(array(
+            'company_name'  => request()->company_name,
+            'license'       => request()->license,
+            'location'      => request()->location,
+            'contact'       => request()->contact,
+            'email'         => request()->email,
+        ));   
+        return redirect()->back()->with('msg', "Your changes were made successfully"); 
     }
     protected function removeUgandanCompany($id){
-        return UgandanCompany::where('id',$id)->delete();
+        return UgandanCompany::find($id)->delete();
     }
 }

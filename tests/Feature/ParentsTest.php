@@ -23,7 +23,7 @@ class ParentsTest extends TestCase
             'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('Parents',['id'=>'1']);
+            $this->assertEquals('Faith', Parents::first()->parent_first_name);
     }
     /** @test */
     public function getParents(){
@@ -37,8 +37,15 @@ class ParentsTest extends TestCase
         $this->withoutExceptionHandling();
         $this->createParents();
         $to_edit = Parents::first();
-        $response = $this->patch('/change-parents/'.$to_edit->id);
-        $this->assertEquals('2', Parents::first()->id);
+        $response = $this->patch('/change-parents/'.$to_edit->id, [
+            'parent_first_name'=>'Faith',
+            'parent_last_name'=>'Nalumansi',
+            'parent_other_name'=>'',
+            'contact'=>'0756321479',
+            'address'=>'Nansana',
+            'updated_by'=>1,
+        ]);
+        $this->assertEquals('Faith', Parents::first()->parent_first_name);
     }
     /** @test */
     public function removeParents(){

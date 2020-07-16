@@ -21,7 +21,7 @@ class CommunicationCentresTest extends TestCase
             'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('CommunicationCentres',['id'=>'2']);
+            $this->assertEquals('Ministry of labour', CommunicationCentres::first()->centre_name);
     }
     /** @test */
     public function getCommunicationCentres(){
@@ -35,8 +35,13 @@ class CommunicationCentresTest extends TestCase
         $this->withoutExceptionHandling();
         $this->createCommunicationCentres();
         $to_edit = CommunicationCentres::first();
-        $response = $this->patch('/change-communicationCentres/'.$to_edit->id);
-        $this->assertEquals('2', CommunicationCentres::first()->id);
+        $response = $this->patch('/change-communicationCentres/'.$to_edit->id, [
+            'centre_name'=>'Ministry of labour',
+            'contact'=>'0312479652',
+            'location'=>'Kampala, Uganda. P.O.Box 4216',
+            'updated_by'=>1,
+        ]);
+        $this->assertEquals('Ministry of labour', CommunicationCentres::first()->centre_name);
     }
     /** @test */
     public function removeCommunicationCentres(){

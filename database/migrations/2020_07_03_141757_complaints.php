@@ -22,7 +22,8 @@ class Complaints extends Migration
             $table->string('reported_time');
             $table->string('complaint_status');
             $table->string('evidence');
-            $table->integer('updated_by');
+            $table->integer('updated_by')->nullable();
+            $table->integer('created_by');
             $table->softdeletes('deleted at');
             $table->timestamps();
         });

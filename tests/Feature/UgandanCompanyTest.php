@@ -23,7 +23,7 @@ class UgandanCompanyTest extends TestCase
         'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('UgandanCompany',['id'=>'1']);
+            $this->assertEquals('Middle East Company', UgandanCompany::first()->company_name);
     }
     /** @test */
     public function getUgandanCompany(){
@@ -37,8 +37,15 @@ class UgandanCompanyTest extends TestCase
         $this->withoutExceptionHandling();
         $this->createUgandanCompany();
         $to_edit = UgandanCompany::first();
-        $response = $this->patch('/change-ugandanCompany/'.$to_edit->id);
-        $this->assertEquals('2', UgandanCompany::first()->id);
+        $response = $this->patch('/change-ugandanCompany/'.$to_edit->id, [
+            'company_name'=>'Middle East Company',
+            'license'=>'01246UG',
+            'location'=>'Plot 247 Bugolobi',
+            'contact'=>'0312749652',
+            'email'=>'middleastcom@gmail.com',
+            'updated_by'=>1,
+        ]);
+        $this->assertEquals('Middle East Company', UgandanCompany::first()->company_name);
     }
     /** @test */
     public function removeUgandanCompany(){

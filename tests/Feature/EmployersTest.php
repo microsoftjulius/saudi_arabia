@@ -23,7 +23,7 @@ class EmployersTest extends TestCase
             'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('Employers',['id'=>'1']);
+            $this->assertEquals('Hannat', Employers::first()->employer_first_name);
     }
     /** @test */
     public function getEmployers(){
@@ -37,8 +37,15 @@ class EmployersTest extends TestCase
         $this->withoutExceptionHandling();
         $this->createEmployers();
         $to_edit = Employers::first();
-        $response = $this->patch('/change-employers/'.$to_edit->id);
-        $this->assertEquals('2', Employers::first()->id);
+        $response = $this->patch('/change-employers/'.$to_edit->id, [
+            'employer_first_name'=>'Hannat',
+            'employer_last_name'=>'Shukrah',
+            'employer_other_name'=>'',
+            'contact'=>'0332479641',
+            'address'=>'Saudi Arabia Capital',
+            'updated_by'=>1,
+        ]);
+        $this->assertEquals('Hannat', Employers::first()->employer_first_name);
     }
     /** @test */
     public function removeEmployers(){

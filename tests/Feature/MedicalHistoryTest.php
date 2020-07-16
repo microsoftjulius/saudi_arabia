@@ -24,7 +24,7 @@ class MedicalHistoryTest extends TestCase
             'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('MedicalHistory',['id'=>'1']);
+            $this->assertEquals('checked', MedicalHistory::first()->premedical_status);
     }
     /** @test */
     public function getMedicalHistory(){
@@ -37,8 +37,16 @@ class MedicalHistoryTest extends TestCase
     public function changeMedicalHistory(){
         $this->createMedicalHistory();
         $to_edit = MedicalHistory::first();
-        $response = $this->patch('/change-medicalHistory/'.$to_edit->id);
-        $this->assertEquals('2', MedicalHistory::first()->id);
+        $response = $this->patch('/change-medicalHistory/'.$to_edit->id ,[
+            'premedical_status'=>'checked',
+            'premedical_status_date'=>'12/04/2020',
+            'final_medical_test'=>'checked',
+            'predepature_medical_tests'=>'checked',
+            'covid19_certificate'=>'checked',
+            'covid19_certificate_date'=>'12/012/2020',
+            'updated_by'=>1,
+        ]);
+        $this->assertEquals('checked', MedicalHistory::first()->premedical_status);
     }
     /** @test */
     public function removeMedicalHistory(){

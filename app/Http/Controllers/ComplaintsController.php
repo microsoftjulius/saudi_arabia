@@ -8,12 +8,23 @@ use App\Http\Resources\ComplaintsResource;
 
 class ComplaintsController extends Controller
 {
+    public function __construct(){
+        $this->authenticated_instance = new AuthenticatedController; 
+    }
     private function createComplaints(){
-        return Complaints::create($this->validateComplaints());
+        $complaints = new Complaints;
+        $complaints->complaint_type    = request()->complaint_type;
+        $complaints->complaint_details = request()->complaint_details;
+        $complaints->reported_date     = request()->reported_date;
+        $complaints->resolved_date     = request()->resolved_date;
+        $complaints->reported_time     = request()->reported_time;
+        $complaints->complaint_status  = request()->complaint_status;
+        $complaints->evidence          = request()->evidence;
+        $complaints->reported_date     = request()->reported_date;
     }
     protected function validateComplaints(){
         if(empty(request()->complaint_type)){
-            return redirect()->back()->withErrors("Please enter the cmplaint type");
+            return redirect()->back()->withErrors("Please enter the complaint type");
         }elseif(empty(request()->complaint_details)){
             return redirect()->back()->withErrors("Please enter the complaint details");
         }elseif(empty(request()->reported_date)){
@@ -36,9 +47,19 @@ class ComplaintsController extends Controller
         return ComplaintsResource::collection(Complaints::all());
     }
     protected function changeComplaints($id){
-        return Complaints::where('id',$id)->update(array('id'=>'2'));
-    }
+        return Complaints::find($id)->update(array(
+                'complaint_type' => request()->complaint_type,
+                'complaint_details' => request()->complaint_details,
+                'reported_date'     => request()->reported_date,
+                'resolved_date'     => request()->resolved_date,
+                'reported_time'     => request()->reported_time,
+                'complaint_status'  => request()->complaint_status,
+                'evidence'          => request()->evidence,
+                'reported_date'     => request()->reported_date,
+            ));
+            return redirect()->back()->with('msg', "Your changes were made successfully");
+        }
     protected function removeComplaints($id){
-        return Complaints::where('id',$id)->delete();
+        return Complaints::find($id)->delete();
     }
 }

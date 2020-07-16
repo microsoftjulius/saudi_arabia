@@ -8,8 +8,16 @@ use App\Http\Resources\SolutionsResource;
 
 class SolutionsController extends Controller
 {
+    public function __construct(){
+        $this->authenticated_instance = new AuthenticatedController; 
+    }
     private function createSolutions(){
-        return Solutions::create($this->validateSolutions());
+        $medical_history = new Solutions;
+        $medical_history->solution_name           = request()->solution_name;
+        $medical_history->reg_code                = request()->reg_code;
+        $medical_history->final_report_print_out  = request()->final_report_print_out;
+        $medical_history->created_by              = $this->authenticated_instance->getAuthenticatedUser();
+        $medical_history->save();
     }
     protected function validateSolutions(){
         if(empty(request()->solution_name)){
@@ -26,9 +34,14 @@ class SolutionsController extends Controller
         return SolutionsResource::collection(Solutions::all());
     }
     protected function changeSolutions($id){
-        return Solutions::where('id',$id)->update(array('id'=>'2'));
+        return Solutions::find($id)->update(array(
+            'solution_name'         => request()->solution_name,
+            'reg_code'              => request()->reg_code,
+            'final_report_print_out'=> request()->final_report_print_out,
+        ));
+        return redirect()->back()->with('msg', "Your changes were made successfully");
     }
     protected function removeSolutions($id){
-        return Solutions::where('id',$id)->delete();
+        return Solutions::find($id)->delete();
     }
 }

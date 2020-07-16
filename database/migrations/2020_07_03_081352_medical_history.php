@@ -16,7 +16,8 @@ class MedicalHistory extends Migration
             $table->string('predepature_medical_tests');
             $table->string('covid19_certificate');
             $table->string('covid19_certificate_date');
-            $table->integer('updated_by');
+            $table->integer('updated_by')->nullable();
+            $table->integer('created_by');
             $table->softdeletes('deleted at');
             $table->timestamps();
         });

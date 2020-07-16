@@ -25,7 +25,7 @@ class ComplaintsTest extends TestCase
             'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('Complaints',['id'=>'1']);
+            $this->assertEquals('Rape', Complaints::first()->complaint_type);;
     }
     /** @test */
     public function getComplaints(){
@@ -39,8 +39,17 @@ class ComplaintsTest extends TestCase
         $this->withoutExceptionHandling();
         $this->createComplaints();
         $to_edit = Complaints::first();
-        $response = $this->patch('/change-complaints/'.$to_edit->id);
-        $this->assertEquals('2', Complaints::first()->id);
+        $response = $this->patch('/change-complaints/'.$to_edit->id, [
+            'complaint_type'=>'Rape',
+            'complaint_details'=>'Rape',
+            'reported_date'=>'12/04/2020',
+            'resolved_date'=>'12/06/2020',
+            'reported_time'=>'10:00 a.m',
+            'complaint_status'=>'Resolved',
+            'evidence'=>'0332479641',
+            'updated_by'=>1,
+        ]);
+        $this->assertEquals('Rape', Complaints::first()->complaint_type);
     }
     /** @test */
     public function removeComplaints(){

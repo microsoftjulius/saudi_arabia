@@ -15,7 +15,8 @@ class Employers extends Migration
             $table->string('employer_other_name')->nullable();
             $table->string('contact');
             $table->string('address');
-            $table->integer('updated_by');
+            $table->integer('updated_by')->nullable();
+            $table->integer('created_by');
             $table->softdeletes('deleted at');
             $table->timestamps();
         });

@@ -28,7 +28,7 @@ class candidatesTest extends TestCase
             'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('candidates',['id'=>'2']);
+            $this->assertEquals('Dorothy', candidates::first()->candidate_first_name);
     }
     /** @test */
     public function getCandidates(){
@@ -42,8 +42,20 @@ class candidatesTest extends TestCase
         $this->withoutExceptionHandling();
         $this->createCandidates();
         $to_edit = candidates::first();
-        $response = $this->patch('/change-candidates/'.$to_edit->id);
-        $this->assertEquals('2', candidates::first()->id);
+        $response = $this->patch('/change-candidates/'.$to_edit->id, [
+            'candidate_first_name'=>'Tina',
+            'candidate_last_name'=>'Katusahabe',
+            'candidate_other_name'=>'',
+            'date_of_birth'=>'12/12/1970',
+            'place_of_birth'=>'Kabale',
+            'next_of_kin'=>'Turyamuhaki Blessed',
+            'occupation'=>'House keeping',
+            'education_level'=>'Degree',
+            'contact'=>'0772456975',
+            'consent_letter'=>'checked',
+            'updated_by'=>1,
+        ]);
+        $this->assertEquals('Tina', candidates::first()->candidate_first_name);
     }
     /** @test */
     public function removeCandidates(){

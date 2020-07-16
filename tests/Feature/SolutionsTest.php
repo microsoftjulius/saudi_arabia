@@ -21,7 +21,7 @@ class SolutionsTest extends TestCase
             'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('Solutions',['id'=>'1']);
+            $this->assertEquals('Arrested', Solutions::first()->solution_name);
     }
     /** @test */
     public function getSolutions(){
@@ -35,8 +35,13 @@ class SolutionsTest extends TestCase
         $this->withoutExceptionHandling();
         $this->createSolutions();
         $to_edit = Solutions::first();
-        $response = $this->patch('/change-solutions/'.$to_edit->id);
-        $this->assertEquals('2', Solutions::first()->id);
+        $response = $this->patch('/change-solutions/'.$to_edit->id, [
+            'solution_name'=>'Arrested',
+            'reg_code'=>'01246UG',
+            'final_report_print_out'=>'Printed',
+            'updated_by'=>1,
+        ]);
+        $this->assertEquals('Arrested', Solutions::first()->solution_name);
     }
     /** @test */
     public function removeSolutions(){
