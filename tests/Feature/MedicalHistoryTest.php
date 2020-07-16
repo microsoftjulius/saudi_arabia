@@ -26,7 +26,7 @@ class MedicalHistoryTest extends TestCase
             'updated_by'=>1,
             ]);
 
-        $this->assertDatabaseHas('MedicalHistory',['id'=>'1']);
+        $this->assertDatabaseHas('medical_histories',['id'=>'1']);
     }
     /** @test */
     public function getMedicalHistory(){
