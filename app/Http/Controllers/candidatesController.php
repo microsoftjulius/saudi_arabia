@@ -9,7 +9,6 @@ use App\Http\Resources\candidatesResource;
 class candidatesController extends Controller
 {
     private function createCandidates($parent_id){
-
         return candidates::create($this->validateCandidates());
     }
     protected function validateCandidates(){
