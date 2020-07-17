@@ -21,6 +21,8 @@ class ComplaintsController extends Controller
         $complaints->complaint_status  = request()->complaint_status;
         $complaints->evidence          = request()->evidence;
         $complaints->reported_date     = request()->reported_date;
+        $complaints->created_by        = 1;
+        $complaints->save();
     }
     protected function validateComplaints(){
         if(empty(request()->complaint_type)){
