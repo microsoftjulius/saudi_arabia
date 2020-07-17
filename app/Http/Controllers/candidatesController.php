@@ -31,7 +31,8 @@ class candidatesController extends Controller
         ]);
     }
     public function getCandidates(){
-        return candidatesResource::collection(candidates::all());
+        $all_candidates = candidates::all();
+        return $all_candidates;
     }
     public function changeCandidates($id){
         return candidates::where('id',$id)->update(array('id'=>'2'));

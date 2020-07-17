@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('welcome');})->name('Dashboard');
+Route::get('/general-map','MapsController@getGeneralMap')->name('General Map');
+Route::get('/get-recruites','UserController@getCandidates')->name('Recruites');
 Route::post('/create-candidates','candidatesController@createCandidates');
 Route::get('/get-candidates','candidatesController@getCandidates');
 Route::patch('/change-candidates/{id}','candidatesController@changeCandidates');
@@ -75,3 +75,6 @@ Route::post('/report-a-sickness','MedicalStatusController@validateReport');
 
 Route::post('/create-insuarance-policy','InsurancePolicyController@validateInsurancePolicy');
 route::post('/register-candidates-current-location','CandidatesCurrentLocation@registerGirlsCurrentLocation');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
