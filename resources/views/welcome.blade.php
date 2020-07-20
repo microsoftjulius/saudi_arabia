@@ -40,13 +40,11 @@
 						@include('layouts.cards')
 
 						<div class="row">
-							<div class="col-lg-12">
-								<div class="card col-md-6">
-									<canvas id="lineChart"></canvas>
-								</div>
-								<div class="card col-md-6">
-									<canvas id="doughnutChart"></canvas>
-								</div>
+							<div class="col-md-6">
+								<canvas id="lineChart" class="card"></canvas>
+							</div>
+							<div class="col-md-6">
+								<canvas id="pieChart" class="card"></canvas>
 							</div>
 						</div>
 						<!-- [ Main Content ] end -->
@@ -75,7 +73,7 @@ type: 'line',
 data: {
 labels: ["January", "February", "March", "April", "May", "June", "July"],
 datasets: [{
-label: "My First dataset",
+label: "Male",
 data: [65, 59, 80, 81, 56, 55, 40],
 backgroundColor: [
 'rgba(105, 0, 132, .2)',
@@ -86,7 +84,7 @@ borderColor: [
 borderWidth: 2
 },
 {
-label: "My Second dataset",
+label: "Females",
 data: [28, 48, 40, 19, 86, 27, 90],
 backgroundColor: [
 'rgba(0, 137, 132, .2)',
@@ -104,16 +102,16 @@ responsive: true
 });
 
 
-//doughnut
-var ctxD = document.getElementById("doughnutChart").getContext('2d');
-var myLineChart = new Chart(ctxD, {
-type: 'doughnut',
+//pie
+var ctxP = document.getElementById("pieChart").getContext('2d');
+var myPieChart = new Chart(ctxP, {
+type: 'pie',
 data: {
-labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+labels: ["Girls", "Boys"],
 datasets: [{
-data: [300, 50, 100, 40, 120],
-backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+data: [300, 50],
+backgroundColor: ["#F7464A", "#46BFBD"],
+hoverBackgroundColor: ["#FF5A5E", "#5AD3D1"]
 }]
 },
 options: {

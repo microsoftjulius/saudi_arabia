@@ -24,7 +24,8 @@ class AbroadCompanyController extends Controller
         ]);
     }
     public function getAbroadCompany(){
-        return AbroadCompanyResource::collection(AbroadCompany::all());
+        $all_abroad_companies = AbroadCompany::all();
+        return view('admin.abroad_companies',compact('all_abroad_companies'));
     }
     public function changeAbroadCompany($id){
         return AbroadCompany::where('id',$id)->update(array('id'=>'2'));

@@ -922,7 +922,7 @@ if ($('.pcoded-header .page-header')[0]) {
 }
 if($('.page-header-title h5')[0]){
     var page=$('.page-header-title h5').html();
-    $(document).attr("title", "Flex Able - "+page);
+    $(document).attr("title", "Monitoring Labour - "+page);
 }
 // responsive header click
 $('.pcoded-header > .collapse:not(.show) .mob-toggler').click(function() {

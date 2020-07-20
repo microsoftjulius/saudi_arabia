@@ -22,7 +22,8 @@ class EmployersController extends Controller
         ]);
     }
     public function getEmployers(){
-        return EmployersResource::collection(Employers::all());
+        $all_employers = Employers::all();
+        return view('admin.employers');
     }
     public function changeEmployers($id){
         return Employers::where('id',$id)->update(array('id'=>'2'));

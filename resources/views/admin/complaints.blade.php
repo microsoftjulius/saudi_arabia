@@ -40,10 +40,10 @@
                                             <table id="simpletable" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Place Of Birth</th>
-                                                        <th>Date Of Birth</th>
-                                                        <th>Contact</th>
+                                                        <th>Employer</th>
+                                                        <th>Employee</th>
+                                                        <th>Country</th>
+                                                        <th>Complaint</th>
                                                         <th>Status</th>
                                                         <th>Options</th>
                                                     </tr>

@@ -40,10 +40,10 @@
                                             <table id="simpletable" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Place Of Birth</th>
-                                                        <th>Date Of Birth</th>
-                                                        <th>Contact</th>
+                                                        <th>Company</th>
+                                                        <th>Location</th>
+                                                        <th>Start Date</th>
+                                                        <th>End Date</th>
                                                         <th>Status</th>
                                                         <th>Options</th>
                                                     </tr>
@@ -55,10 +55,10 @@
                                                         <td>Edinburgh</td>
                                                         <td>61</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -68,10 +68,10 @@
                                                         <td>Tokyo</td>
                                                         <td>63</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -81,10 +81,10 @@
                                                         <td>San Francisco</td>
                                                         <td>66</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -94,10 +94,10 @@
                                                         <td>Edinburgh</td>
                                                         <td>22</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -107,10 +107,10 @@
                                                         <td>Tokyo</td>
                                                         <td>33</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -120,10 +120,10 @@
                                                         <td>New York</td>
                                                         <td>61</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -133,10 +133,10 @@
                                                         <td>San Francisco</td>
                                                         <td>59</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -146,10 +146,10 @@
                                                         <td>Tokyo</td>
                                                         <td>55</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -159,10 +159,10 @@
                                                         <td>San Francisco</td>
                                                         <td>39</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -172,10 +172,10 @@
                                                         <td>Edinburgh</td>
                                                         <td>23</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -185,10 +185,10 @@
                                                         <td>London</td>
                                                         <td>30</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -198,10 +198,10 @@
                                                         <td>Edinburgh</td>
                                                         <td>22</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -211,10 +211,10 @@
                                                         <td>San Francisco</td>
                                                         <td>36</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -224,10 +224,10 @@
                                                         <td>London</td>
                                                         <td>43</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
@@ -237,75 +237,10 @@
                                                         <td>London</td>
                                                         <td>19</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-success">Active</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Michael Silva</td>
-                                                        <td>Marketing Designer</td>
-                                                        <td>London</td>
-                                                        <td>66</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Paul Byrd</td>
-                                                        <td>Chief Financial Officer (CFO)</td>
-                                                        <td>New York</td>
-                                                        <td>64</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Gloria Little</td>
-                                                        <td>Systems Administrator</td>
-                                                        <td>New York</td>
-                                                        <td>59</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Bradley Greer</td>
-                                                        <td>Software Engineer</td>
-                                                        <td>London</td>
-                                                        <td>41</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Dai Rios</td>
-                                                        <td>Personnel Lead</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>35</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <div class="btn btn-sm btn-primary">view</div>
                                                             <div class="btn btn-sm btn-danger">delete</div>
                                                         </td>
                                                     </tr>
