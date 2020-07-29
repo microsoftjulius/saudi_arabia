@@ -34,7 +34,7 @@
                         <li class=""><a href="/get-ministry-users" class="waves-effect">Ministry</a></li>
                         <li class=""><a href="/get-embassy-users" class="waves-effect">Embassies</a></li>
                         <li class=""><a href="/get-recruiting-companies" class="waves-effect">Recruiting Companies</a></li>
-                        <li class=""><a href="/get-recruites" class="waves-effect">Recruites</a></li>
+                        {{-- <li class=""><a href="/get-recruites" class="waves-effect">Recruites</a></li> --}}
                         <li class=""><a href="/get-employers" class="waves-effect">Employers</a></li>
                     </ul>
                 </li>

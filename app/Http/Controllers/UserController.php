@@ -21,8 +21,8 @@ class UserController extends Controller
         return view('admin.embassies',compact('all_emabssies'));
     }
 
-    protected function getCandidates(){
-        $all_candidates = $this->candidate_instance->getCandidates();
+    protected function getCandidates($id){
+        $all_candidates = $this->candidate_instance->getCandidates($id);
         return view('admin.candidates',compact('all_candidates'));
     }
 }
