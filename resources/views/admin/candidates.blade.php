@@ -51,7 +51,7 @@
                                                 <tbody>
                                                     @foreach ($all_candidates as $company_candidates)
                                                     <tr>
-                                                        <td>{{ $company_candidates->first_name }} {{ $company_candidates->last_name }} {{ $company_candidates->other_name }}</td>
+                                                        <td><a href="/candidates-current-location/{{ $company_candidates->id }}">{{ $company_candidates->first_name }} {{ $company_candidates->last_name }} {{ $company_candidates->other_name }}</a></td>
                                                         <td>{{ $company_candidates->contact }}</td>
                                                         <td>{{ $company_candidates->occupation }}</td>
                                                         <td>{{ $company_candidates->duration }}</td>

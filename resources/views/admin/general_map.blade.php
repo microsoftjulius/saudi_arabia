@@ -45,17 +45,12 @@
 
                         <div class="row">
                             <!-- [ basic-map ] start -->
-                            <div class="col-lg-12 col-xl-12 col-sm-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5>General Map</h5>
-                                        <span class="d-block m-t-5">Map Showing all Employees And Employers locations</span>
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="basic-map" class="set-map" style="height:400px;"></div>
-                                    </div>
-                                </div>
-                            </div>
+							<!--Google map-->
+							<div class="card">
+								<div id="map-container-google-3" class="">
+									<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1PssffxfsOwNqJSUbtrvul94mzLATlKZs" width="1080" height="480"></iframe>
+								</div>
+							</div>
                             <!-- [ basic-map ] end -->
                         </div>
 						<!-- [ Main Content ] end -->
@@ -74,8 +69,6 @@
 <script src="{{ asset('assets/js/pcoded.min.js')}}"></script>
 
 
-
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script src="{{ asset('assets/plugins/google-maps/js/gmaps.js')}}"></script>
 <script src="{{ asset('assets/js/pages/google-maps.js')}}"></script>

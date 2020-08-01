@@ -41,7 +41,7 @@
                                                             <table class="table table-responsive invoice-table table-borderless p-l-20">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><a href="index.html" class="b-brand">
+                                                                        <td><a href="/" class="b-brand">
                                                                                 <img class="img-fluid" src="{{ asset('/candidates_passport_photos/'.$single_candidate->passport_photo) }}" alt="{{ $single_candidate->passport_photo }}" style="width:200px;height:200px">
                                                                             </a>
                                                                         </td>
@@ -50,14 +50,39 @@
                                                                         <td>Company name : {{ $single_candidate->name }}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>1065 Mandan Road, Columbia MO, Missouri. (123)-65202</td>
+                                                                        <td>Candidates Parent : {{ $single_candidate->pfirst_name }} {{ $single_candidate->plast_name }} {{ $single_candidate->pother_name }}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td><a class="text-secondary" href="mailto:demo@gmail.com" target="_top">demo@gmail.com</a></td>
+                                                                        <td style="text-transform: capitalize">Employement Status : 
+                                                                            @if($single_candidate->status == "approved")
+                                                                                <span class="label label-success">{{ $single_candidate->status }}</span>
+                                                                            @else
+                                                                                <span class="label label-warning">{{ $single_candidate->status }}</span>
+                                                                            @endif
+                                                                        </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>+91 919-91-91-919</td>
+                                                                        <td>Candidates Contact : {{ $single_candidate->contact }}</td>
                                                                     </tr>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Candidates Conset Letter : {{ $single_candidate->consent_letter }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Candidates Next of kin : {{ $single_candidate->next_of_kin }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Candidates Occupation : {{ $single_candidate->occupation }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Candidates Level of Education : {{ $single_candidate->education_level }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Candidates Place of Birth : {{ $single_candidate->place_of_birth }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Candidates Date of joining : {{ $single_candidate->created_at->format('Y-m-d') }}</td>
+                                                                </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -65,129 +90,29 @@
                                                 </div>
                                                 <div class="col-md-4"></div>
                                             </div>
+                                            @if(request()->route()->getName() == "Workers Employment Status")
                                             <div class="card-body">
-                                                <div class="row invoive-info">
-                                                    <div class="col-md-4 col-xs-12 invoice-client-info">
-                                                        <h6>Client Information :</h6>
-                                                        <h6 class="m-0">Josephin Villa</h6>
-                                                        <p class="m-0 m-t-10">1065 Mandan Road, Columbia MO, Missouri. (123)-65202</p>
-                                                        <p class="m-0">(1234) - 567891</p>
-                                                        <p><a class="text-secondary" href="mailto:demo@gmail.com" target="_top">demo@gmail.com</a></p>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-6">
-                                                        <h6>Order Information :</h6>
-                                                        <table class="table table-responsive invoice-table invoice-order table-borderless">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <th>Date :</th>
-                                                                    <td>November 14</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Status :</th>
-                                                                    <td>
-                                                                        <span class="label label-warning">Pending</span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Id :</th>
-                                                                    <td>
-                                                                        #146859
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-6">
-                                                        <h6 class="m-b-20">Invoice Number <span>#125863478945</span></h6>
-                                                        <h6 class="text-uppercase text-primary">Total Due :
-                                                            <span>$950.00</span>
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="table-responsive">
-                                                            <table class="table invoice-detail-table">
-                                                                <thead>
-                                                                    <tr class="thead-default">
-                                                                        <th>Description</th>
-                                                                        <th>Quantity</th>
-                                                                        <th>Amount</th>
-                                                                        <th>Total</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <h6>Logo Design</h6>
-                                                                            <p class="m-0">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
-                                                                        </td>
-                                                                        <td>6</td>
-                                                                        <td>$200.00</td>
-                                                                        <td>$1200.00</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <h6>Logo Design</h6>
-                                                                            <p class="m-0">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
-                                                                        </td>
-                                                                        <td>7</td>
-                                                                        <td>$100.00</td>
-                                                                        <td>$700.00</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <h6>Logo Design</h6>
-                                                                            <p class="m-0">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
-                                                                        </td>
-                                                                        <td>5</td>
-                                                                        <td>$150.00</td>
-                                                                        <td>$750.00</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <table class="table table-responsive invoice-table invoice-total">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <th>Sub Total :</th>
-                                                                    <td>$4725.00</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Taxes (10%) :</th>
-                                                                    <td>$57.00</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Discount (5%) :</th>
-                                                                    <td>$45.00</td>
-                                                                </tr>
-                                                                <tr class="text-info">
-                                                                    <td>
-                                                                        <hr />
-                                                                        <h5 class="text-primary m-r-10">Total :</h5>
-                                                                    </td>
-                                                                    <td>
-                                                                        <hr />
-                                                                        <h5 class="text-primary">$ 4827.00</h5>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <h6>Terms and Condition :</h6>
-                                                        <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                                                        </p>
-                                                    </div>
+                                                <div class="dt-responsive table-responsive">
+                                                    Candidates Employment Details
+                                                    <table id="simpletable" class="table table-striped table-bordered nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Employer</th>
+                                                                <th>Duration</th>
+                                                                <th>Start Date</th>
+                                                                <th>End Date</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <td>{{ $single_candidate->efirst_name }} {{ $single_candidate->elast_name }} {{ $single_candidate->eother_name }}</td>
+                                                            <td>{{ $single_candidate->duration }}</td>
+                                                            {{-- <td>{{ $single_candidate->created_at->format('Y') }}</td> --}}
+                                                            <td></td>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
+                                            @endif
                                         </div>
                                         <div class="row text-center">
                                             <div class="col-sm-12 invoice-btn-group text-center">

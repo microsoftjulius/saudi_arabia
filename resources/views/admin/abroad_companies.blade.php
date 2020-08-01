@@ -73,7 +73,7 @@
                                                                 @elseif($company->status == "pending")
                                                                     <span class="badge badge-info">{{ $company->status }}</span>
                                                                 @else
-                                                                    <span class="badge badge-danger">{{ $company->status }}</span>
+                                                                    <span class="badge badge-warning">suspended</span>
                                                                 @endif
                                                             </td>
                                                             <td>
@@ -83,6 +83,7 @@
                                                                 @else
                                                                     <a href="/activate-company/{{ $company->id }}"><div class="btn btn-sm btn-success">Activate</div></a>
                                                                 @endif
+                                                                    <a href="#"><div class="btn btn-sm btn-info">Edit</div></a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -165,13 +166,12 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save</button>
     </div>
     </div>
 </div>
 </div>
 </form>
-
 </body>
 
 </html>

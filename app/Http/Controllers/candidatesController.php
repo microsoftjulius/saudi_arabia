@@ -33,15 +33,14 @@ class candidatesController extends Controller
 
     protected function getCandidatesInfo($id){
         $candidates_all_info = Candidates::join('parents','parents.id','candidates.parent_id')
-        ->join('employers','employers.id','candidates.employer_id')
         ->join('users','users.id','candidates.user_id')
         ->where('candidates.id',$id)
-        ->select('users.name','employers.first_name','employers.last_name','employers.other_name','employers.contact',
-            'employers.address','parents.pfirst_name','parents.plast_name','parents.pcontact','parents.paddress',
+        ->select('users.name','parents.pfirst_name','parents.plast_name','parents.pcontact','parents.paddress',
             'candidates.first_name','candidates.last_name','candidates.other_name','candidates.passport_photo',
             'candidates.duration','candidates.place_of_birth','candidates.date_of_birth','candidates.next_of_kin',
-            'candidates.education_level','candidates.occupation','candidates.consent_letter','candidates.status')
+            'candidates.education_level','candidates.occupation','candidates.consent_letter','candidates.status','candidates.contact','candidates.created_at')
         ->get();
+        //return $candidates_all_info;
         return view('admin.candidates_profile',compact('candidates_all_info'));
     }
 
@@ -56,4 +55,6 @@ class candidatesController extends Controller
     public function removeCandidates($id){
         return Candidates::where('id',$id)->delete();
     }
+
+
 }

@@ -23,6 +23,7 @@ class CompaniesController extends Controller
     public function registerNewCompanyAccount(){
         $company = new NewCompany;
         $company->email = request()->email;
+        $company->category_id = 1; //1 stands for company
         $company->name  = request()->company_name;
         $company->password = Hash::make(request()->password);
         $company->save();

@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () { return view('welcome');})->name('Dashboard');
 Route::get('/general-map','MapsController@getGeneralMap')->name('General Map');
 Route::get('/get-recruites/{id}','UserController@getCandidates')->name('Workers');
+Route::get('/create-embassy','EmbassyController@validatedEmbassy')->name('Embassies');
 Route::get('/get-embassy-users','UserController@getEmbassy')->name('Embassies');
 Route::get('/get-ministry-users','UserController@getMinistries')->name('Ministries');
 Route::post('/create-candidates','candidatesController@createCandidates');
 Route::patch('/change-candidates/{id}','candidatesController@changeCandidates');
 Route::delete('/remove-candidates/{id}','candidatesController@removeCandidates');
-
+Route::get('/candidates-current-location/{id}','MapsController@getCandidatesCurrentLocation');
 Route::post('/create-parents','ParentsController@createParents');
 Route::get('/get-parents','ParentsController@getParents');
 Route::patch('/change-parents/{id}','ParentsController@changeParents');
@@ -37,7 +38,7 @@ Route::get('/get-recruiting-companies','AbroadCompanyController@getAbroadCompany
 Route::get('/activate-company/{id}','AbroadCompanyController@updateAbroadCompany');
 Route::get('/remove-abroadCompany/{id}','AbroadCompanyController@removeAbroadCompany');
 
-Route::post('/create-employers','EmployersController@createEmployers');
+Route::post('/create-employers','EmployersController@validateEmployers');
 Route::get('/get-employers','EmployersController@getEmployers')->name("Employers");
 Route::patch('/change-employers/{id}','EmployersController@changeEmployers');
 Route::delete('/remove-employers/{id}','EmployersController@removeEmployers');

@@ -18,7 +18,7 @@ class Candidates extends Migration
             $table->integer('user_id'); //user_id is the company that has created this user
             $table->integer('created_by');
             $table->integer('parent_id');
-            $table->integer('employer_id');
+            $table->string('passport_photo');
             $table->integer('company_id');
             $table->string('first_name');
             $table->string('last_name');
