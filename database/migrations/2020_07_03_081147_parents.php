@@ -8,14 +8,15 @@ class Parents extends Migration
 {
     public function up()
     {
-        Schema::create('Parents',function (Blueprint $table){
+        Schema::create('parents',function (Blueprint $table){
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('other_name')->nullable();
-            $table->string('contact');
-            $table->string('address');
+            $table->string('pfirst_name');
+            $table->string('plast_name');
+            $table->string('pother_name')->nullable();
+            $table->string('pcontact');
+            $table->string('paddress');
             $table->integer('updated_by');
+            $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class Parents extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Parents');
+        Schema::dropIfExists('parents');
     }
 }

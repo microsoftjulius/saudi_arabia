@@ -13,7 +13,7 @@ class AbroadCompany extends Migration
      */
     public function up()
     {
-        Schema::create('AbroadCompany',function (Blueprint $table){
+        Schema::create('abroad_companies',function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('company_name');
             $table->string('contract');
@@ -22,7 +22,10 @@ class AbroadCompany extends Migration
             $table->string('visa_number');
             $table->string('visa_date');
             $table->string('signature');
-            $table->integer('updated_by');
+            $table->integer('created_by');
+            $table->enum('status',['active','pending','deleted'])->default('active');
+            $table->integer('updated_by')->nullable();
+            $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
     }
@@ -34,6 +37,6 @@ class AbroadCompany extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('AbroadCompany');
+        Schema::dropIfExists('abroad_companies');
     }
 }

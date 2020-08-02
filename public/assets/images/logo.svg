@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="108" height="27" viewBox="0 0 108 27">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-1 {
+        font-size: 27px;
+        font-family: FontAwesome5Brands-Regular, "Font Awesome 5 Brands";
+      }
+
+      .cls-2 {
+        font-size: 17px;
+        font-family: Poppins-Regular, Poppins;
+        letter-spacing: 0.02em;
+      }
+    </style>
+  </defs>
+  <g id="BJHIKSJD" transform="translate(-1723 -3833)">
+    <text id="_" data-name="" class="cls-1" transform="translate(1723 3857)"><tspan x="0" y="0"></tspan></text>
+    <text id="Flex_Able" data-name="Flex Able" class="cls-2" transform="translate(1754 3853)"><tspan x="0" y="0">Flex Able</tspan></text>
+  </g>
+</svg>

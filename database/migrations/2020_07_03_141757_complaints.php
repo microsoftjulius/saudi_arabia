@@ -13,7 +13,7 @@ class Complaints extends Migration
      */
     public function up()
     {
-        Schema::create('Complaints',function (Blueprint $table){
+        Schema::create('complaints',function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('complaint_type');
             $table->string('complaint_details');
@@ -23,6 +23,7 @@ class Complaints extends Migration
             $table->string('complaint_status');
             $table->string('evidence');
             $table->integer('updated_by');
+            $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class Complaints extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Complaints');
+        Schema::dropIfExists('complaints');
     }
 }

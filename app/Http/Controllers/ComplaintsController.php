@@ -8,6 +8,9 @@ use App\Http\Resources\ComplaintsResource;
 
 class ComplaintsController extends Controller
 {
+    protected function getComplaintForm(){
+        return view('admin.complaint_form',compact('complaint_form'));
+    }
     public function createComplaints(){
         return Complaints::create($this->validateComplaints());
     }
@@ -24,7 +27,8 @@ class ComplaintsController extends Controller
         ]);
     }
     public function getComplaints(){
-        return ComplaintsResource::collection(Complaints::all());
+        $all_complaints = Complaints::all();
+        return view('admin.complaints',compact('all_complaints'));
     }
     public function changeComplaints($id){
         return Complaints::where('id',$id)->update(array('id'=>'2'));
