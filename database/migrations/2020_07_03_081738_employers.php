@@ -8,14 +8,17 @@ class Employers extends Migration
 {
     public function up()
     {
-        Schema::create('Employers',function (Blueprint $table){
+        Schema::create('employers',function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('other_name')->nullable();
+            $table->string('efirst_name');
+            $table->string('elast_name');
+            $table->string('eother_name')->nullable();
             $table->string('contact');
             $table->string('address');
-            $table->integer('updated_by');
+            $table->string('photo');
+            $table->string('created_by');
+            $table->integer('updated_by')->nullable();
+            $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class Employers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Employers');
+        Schema::dropIfExists('employers');
     }
 }

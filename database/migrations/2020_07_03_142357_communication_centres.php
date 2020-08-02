@@ -12,12 +12,13 @@ class CommunicationCentres extends Migration
      */
     public function up()
     {
-        Schema::create('CommunicationCentres',function (Blueprint $table){
+        Schema::create('communication_centres',function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('centre_name');
             $table->string('contact');
             $table->string('location');
             $table->integer('updated_by');
+            $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CommunicationCentres extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('CommunicationCentres');
+        Schema::dropIfExists('communication_centres');
     }
 }

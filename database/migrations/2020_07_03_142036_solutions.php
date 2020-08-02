@@ -13,12 +13,13 @@ class Solutions extends Migration
      */
     public function up()
     {
-        Schema::create('Solutions',function (Blueprint $table){
+        Schema::create('solutions',function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('solution_name');
             $table->string('reg_code');
             $table->string('final_report_print_out');
             $table->integer('updated_by');
+            $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class Solutions extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Solutions');
+        Schema::dropIfExists('solutions');
     }
 }
