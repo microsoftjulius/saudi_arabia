@@ -14,22 +14,19 @@
             <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!"><span></span></a>
         </div>
         <div class="navbar-content scroll-div" >
-            
-            
-            
             <ul class="nav pcoded-inner-navbar ">
                 <li class="nav-item pcoded-menu-caption">
                     <label>Navigation</label>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
-                    <a href="#!" class="nav-link waves-effect waves-light"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    <a href="#!" class="nav-link waves-effect waves-light"><span class="pcoded-micon"><i class="fa fa-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                     <ul class="pcoded-submenu">
                         <li class=""><a href="/" class="waves-effect">Analytics</a></li>
                         <li class=""><a href="/general-map" class="waves-effect">General Map</a></li>
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
-                    <a href="#!" class="nav-link waves-effect waves-light"><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Users</span></a>
+                    <a href="#!" class="nav-link waves-effect waves-light"><span class="pcoded-micon"><i class="fa fa-users"></i></span><span class="pcoded-mtext">Users</span></a>
                     <ul class="pcoded-submenu">
                         <li class=""><a href="/get-ministry-users" class="waves-effect">Ministry</a></li>
                         <li class=""><a href="/get-embassy-users" class="waves-effect">Embassies</a></li>
@@ -39,30 +36,31 @@
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
-                    <a href="#!" class="nav-link waves-effect waves-light"><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Complaints</span></a>
+                    <a href="#!" class="nav-link waves-effect waves-light"><span class="pcoded-micon"><i class="fa fa-list-alt"></i></span><span class="pcoded-mtext">Complaints</span></a>
                     <ul class="pcoded-submenu">
                         <li class=""><a href="/get-complaint-form" class="waves-effect">Complaint Form</a></li>
                         <li class=""><a href="/get-all-complaints" class="waves-effect">Complaints</a></li>
+                        <li class=""><a href="/get-all-solved-complaints" class="waves-effect">Solved Complaints</a></li>
                     </ul>
                 </li>
-                <li class="nav-item pcoded-hasmenu">
+                {{-- <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link waves-effect waves-light"><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Licenses</span></a>
                     <ul class="pcoded-submenu">
                         <li class=""><a href="/get-active-licenses" class="waves-effect">Active Licenses</a></li>
                         <li class=""><a href="/get-expired-licenses" class="waves-effect">Expired Licenses</a></li>
                         <li class=""><a href="/get-terminated-licenses" class="waves-effect">Terminated Licenses</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="nav-item pcoded-hasmenu">
-                    <a href="#!" class="nav-link waves-effect waves-light"><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Contract</span></a>
+                    <a href="#!" class="nav-link waves-effect waves-light"><span class="pcoded-micon"><i class="fa fa-folder"></i></span><span class="pcoded-mtext">Contracts</span></a>
                     <ul class="pcoded-submenu">
-                        <li class=""><a href="/get-contract" class="waves-effect">Contract File</a></li>
                         <li class=""><a href="/get-ongoing-contracts" class="waves-effect">On going Contracts</a></li>
                         <li class=""><a href="/get-terminated-contracts" class="waves-effect">Terminated Contracts</a></li>
+                        <li class=""><a href="/get-expired-contract" class="waves-effect">Finished Contracts</a></li>
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
-                    <a href="#!" class="nav-link waves-effect waves-light"><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Profiles</span></a>
+                    <a href="#!" class="nav-link waves-effect waves-light"><span class="pcoded-micon"><i class="fa fa-cogs"></i></span><span class="pcoded-mtext">Profiles</span></a>
                     <ul class="pcoded-submenu">
                         <li class=""><a href="/my-profile" class="waves-effect">My Profile</a></li>
                         <li class=""><a href="/other-profiles" class="waves-effect">Other Profiles</a></li>

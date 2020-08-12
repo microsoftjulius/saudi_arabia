@@ -50,7 +50,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($all_complaints as $complaint)
+                                                    @foreach ($all_solved_complaints as $complaint)
                                                     <tr>
                                                         <td>{{ $complaint->clause_title }}</td>
                                                         <td>{{ $complaint->efirst_name }} {{ $complaint->elast_name }} {{ $complaint->eother_name }}</td>
@@ -62,7 +62,7 @@
                                                         </td>
                                                         <td>
                                                             <a href="/view-complaint/{{ $complaint->id }}"><button class="btn btn-sm btn-primary">view</button></a>
-                                                            <button class="btn btn-sm btn-warning">Solved</button>
+                                                            <button class="btn btn-sm btn-warning">Not Solved</button>
                                                         </td>
                                                     </tr>
                                                     @endforeach

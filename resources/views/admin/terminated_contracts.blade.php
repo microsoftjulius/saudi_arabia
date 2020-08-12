@@ -40,29 +40,27 @@
                                             <table id="simpletable" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
-                                                        <th>Complaint Title</th>
+                                                        <th>Domestic Worker</th>
                                                         <th>Employer</th>
-                                                        <th>Employee</th>
-                                                        <th>Company</th>
-                                                        <th>Date of Complaint</th>
-                                                        <th>Status</th>
+                                                        <th>Start Date</th>
+                                                        <th>End Date</th>
+                                                        <th>Contract Status</th>
                                                         <th>Options</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($all_complaints as $complaint)
+                                                    @foreach ($terminated_contracts as $terminated_contract)
                                                     <tr>
-                                                        <td>{{ $complaint->clause_title }}</td>
-                                                        <td>{{ $complaint->efirst_name }} {{ $complaint->elast_name }} {{ $complaint->eother_name }}</td>
-                                                        <td>{{ $complaint->first_name }} {{ $complaint->last_name }} {{ $complaint->other_name }}</td>
-                                                        <td>{{ $complaint->company_name }}</td>
-                                                        <td>{{ $complaint->created_at }}</td>
-                                                        <td>
-                                                            <span class="badge badge-info" style="text-transform: capitalize">{{ $complaint->status }}</span>
+                                                        <td>{{ $terminated_contract->first_name }} {{ $terminated_contract->last_name }} {{ $terminated_contract->other_name }}</td>
+                                                        <td>{{ $terminated_contract->efirst_name }} {{ $terminated_contract->elast_name }} {{ $terminated_contract->eother_name }}</td>
+                                                        <td>{{ $terminated_contract->created_at->format('Y-m-d') }}</td>
+                                                        <td>{{ $terminated_contract->created_at->format('Y-m-d') }}</td>
+                                                        <td class="text-center">
+                                                            <span class="badge badge-secondary">{{ $terminated_contract->contract_status }}</span>
                                                         </td>
                                                         <td>
-                                                            <a href="/view-complaint/{{ $complaint->id }}"><button class="btn btn-sm btn-primary">view</button></a>
-                                                            <button class="btn btn-sm btn-warning">Solved</button>
+                                                            <div class="btn btn-sm btn-info">view</div>
+                                                            <div class="btn btn-sm btn-warning">Activate</div>
                                                         </td>
                                                     </tr>
                                                     @endforeach

@@ -23,10 +23,10 @@ class EmployersController extends Controller
         $employer_photo->move('employer_photos/',$employer_photo_needed);
 
         $employer = new Employers;
-        $employer->efirst_name = request()->first_name;
+        $employer->efirst_name = request()->name;
         $employer->elast_name  = request()->last_name;
         $employer->eother_name = request()->other_name;
-        $employer->contact    = request()->contact;
+        $employer->econtact    = request()->contact;
         $employer->address    = request()->address;
         $employer->created_by = $this->authenticated_user->getLoggedInUser();
         $employer->photo      = $employer_photo_needed;
@@ -36,7 +36,7 @@ class EmployersController extends Controller
     protected function validateEmployers(){
         if(empty(request()->photo)){
             return redirect()->back()->withInput()->withErrors("Please enter the Employers photo to continue");
-        }elseif(empty(request()->first_name)){
+        }elseif(empty(request()->name)){
             return redirect()->back()->withInput()->withErrors("Please enter the Employers first name to continue");
         }elseif(empty(request()->last_name)){
             return redirect()->back()->withInput()->withErrors("Please enter the Employers last name to continue");
@@ -50,7 +50,7 @@ class EmployersController extends Controller
             return redirect()->back()->withInput()->withErrors("Please enter the Password to continue");
         }elseif(request()->password != request()->password_confirm){
             return redirect()->back()->withInput()->withErrors("Please make sure the two passwords match");
-        }elseif(Employers::where('contact',request()->contact)){
+        }elseif(Employers::where('contact',request()->contact)->exists()){
             return redirect()->back()->withInput()->withErrors("The supplied phone number is already registered hence can't be used again");
         }else{
             return $this->createEmployers();

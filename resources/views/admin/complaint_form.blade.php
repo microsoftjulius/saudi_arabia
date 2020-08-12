@@ -31,36 +31,35 @@
                         <div class="row">
                             <!-- Zero config table start -->
                             <div class="col-sm-12">
+                                @include('layouts.messages')
                                 <div class="card">
                                     <div class="card-body">
-                                        <form id="validation-form123" action="#!">
+                                        <form id="validation-form123" action="/create-complaints" method="post" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Complaint Type</label>
-                                                        <select class="form-control" name="validation-select">
+                                                        <input type="text" name="complaint_type" id="" list="complaints" class="form-control" autocomplete="off">
+                                                        <datalist id="complaints">
                                                             <option value=""></option>
-                                                            <optgroup label="Health">
-                                                                <option value="pitons">Food</option>
-                                                                <option value="cams">Clothings</option>
-                                                            </optgroup>
-                                                            <optgroup label="Toture">
-                                                                <option value="skis">Beating</option>
-                                                            </optgroup>
-                                                        </select>
+                                                            @foreach ($complaint_titles as $complaint)
+                                                                <option value="{{ $complaint->clause_title }}"></option>
+                                                            @endforeach
+                                                        </datalist>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Description</label>
-                                                        <textarea class="form-control" name="validation-text"></textarea>
+                                                        <textarea class="form-control" name="complaint_description"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-label">Proof (optional)</label>
                                                         <div>
-                                                            <input type="file" class="validation-file" name="validation-file">
+                                                            <input type="file" class="validation-file" name="complaint_proof">
                                                         </div>
                                                     </div>
                                                 </div>

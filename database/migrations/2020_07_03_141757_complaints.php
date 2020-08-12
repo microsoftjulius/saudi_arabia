@@ -15,14 +15,12 @@ class Complaints extends Migration
     {
         Schema::create('complaints',function (Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('complaint_type');
-            $table->string('complaint_details');
-            $table->string('reported_date');
-            $table->string('resolved_date');
-            $table->string('reported_time');
-            $table->string('complaint_status');
-            $table->string('evidence');
-            $table->integer('updated_by');
+            $table->integer('contract_id');
+            $table->string('complaint');
+            $table->string('evidence')->nullable();
+            $table->integer('created_by');
+            $table->integer('updated_by')->nullable();
+            $table->enum('status',['active','deleted','pending'])->default('active');
             $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });

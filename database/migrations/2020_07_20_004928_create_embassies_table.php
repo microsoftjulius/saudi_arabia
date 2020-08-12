@@ -18,6 +18,7 @@ class CreateEmbassiesTable extends Migration
             $table->string('embassy_name');
             $table->string('embassy_location');
             $table->integer('created_by');
+            $table->enum('status',['active','deleted'])->default('active');
             $table->timestamps();
         });
     }

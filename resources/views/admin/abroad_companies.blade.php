@@ -3,6 +3,8 @@
 
 @include('layouts.head')
 <link rel="stylesheet" href="{{ asset('/assets/plugins/data-tables/css/datatables.min.css')}}">
+<link rel="stylesheet" href="{{ asset('/assets/plugins/ekko-lightbox/css/ekko-lightbox.min.css')}}">
+<link rel="stylesheet" href="{{ asset('/assets/plugins/lightbox2-master/css/lightbox.min.css')}}">
 
 <body class="">
 	<!-- [ Pre-loader ] start -->
@@ -66,7 +68,10 @@
                                                             <td>{{ $company->visa_number }}</td>
                                                             <td>{{ $company->visa_date }}</td>
                                                             <td><a href="{{ asset('contract/'. $company->contract) }}" target="_blank">{{ $company->contract }}</a></td>
-                                                            <td><a href="{{ asset('company_signatures/'. $company->signature) }}" target="_blank"><img src="{{ asset('company_signatures/'. $company->signature)}}" alt="" style="width:100px; height:70px"></a></td>
+                                                            <td>
+                                                                <a href="{{ asset('company_signatures/'. $company->signature) }}" data-toggle="lightbox" data-title="{{ $company->company_name }}" data-footer="Contact : {{ $company->location }}"><img src="{{ asset('company_signatures/'. $company->signature) }}" class="img-fluid m-b-10"
+                                                                        alt=""></a>
+                                                            </td>
                                                             <td>
                                                                 @if($company->status == "active")
                                                                     <span class="badge badge-success">{{ $company->status }}</span>
@@ -124,8 +129,8 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-lg-12">
-                <label for="company_name">Company Name</label>
-                <input type="text" value="{{ old('company_name') }}" name="company_name" id="company_name" placeholder="Enter recruiting company name. e.g. ST. Augustine" class="form-control">
+                <label for="name">Company Name</label>
+                <input type="text" value="{{ old('name') }}" name="name" id="name" placeholder="Enter recruiting company name. e.g. ST. Augustine" class="form-control">
             </div>
             <div class="col-lg-6">
                 <label for="location">Company Location</label>
@@ -174,4 +179,7 @@
 </form>
 </body>
 
+<script src="{{ asset('/assets/plugins/ekko-lightbox/js/ekko-lightbox.min.js')}}"></script>
+<script src="{{ asset('/assets/plugins/lightbox2-master/js/lightbox.min.js')}}"></script>
+<script src="{{ asset('/assets/js/pages/ac-lightbox.js')}}"></script>
 </html>

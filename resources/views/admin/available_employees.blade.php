@@ -32,37 +32,31 @@
                             <!-- Zero config table start -->
                             <div class="col-sm-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h5>A table of all {{ request()->route()->getName() }}</h5>
-                                    </div>
                                     <div class="card-body">
                                         <div class="dt-responsive table-responsive">
                                             <table id="simpletable" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
-                                                        <th>Complaint Title</th>
-                                                        <th>Employer</th>
-                                                        <th>Employee</th>
-                                                        <th>Company</th>
-                                                        <th>Date of Complaint</th>
+                                                        <th>Name</th>
+                                                        <th>Job Type</th>
+                                                        <th>Date Of Application</th>
+                                                        <th>Photo</th>
                                                         <th>Status</th>
                                                         <th>Options</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($all_complaints as $complaint)
+                                                    @foreach ($available_employees as $active_contract)
                                                     <tr>
-                                                        <td>{{ $complaint->clause_title }}</td>
-                                                        <td>{{ $complaint->efirst_name }} {{ $complaint->elast_name }} {{ $complaint->eother_name }}</td>
-                                                        <td>{{ $complaint->first_name }} {{ $complaint->last_name }} {{ $complaint->other_name }}</td>
-                                                        <td>{{ $complaint->company_name }}</td>
-                                                        <td>{{ $complaint->created_at }}</td>
-                                                        <td>
-                                                            <span class="badge badge-info" style="text-transform: capitalize">{{ $complaint->status }}</span>
+                                                        <td>{{ $active_contract->first_name }} {{ $active_contract->last_name }} {{ $active_contract->other_name }}</td>
+                                                        <td>{{ $active_contract->occupation }}</td>
+                                                        <td>{{ $active_contract->created_at->format('Y-m-d')}}</td>
+                                                        <td><img src="candidates_passport_photos/{{ $active_contract->passport_photo }}" style="width:100px; height:100px"></td>
+                                                        <td class="text-center">
+                                                            <span class="badge badge-success">Available</span>
                                                         </td>
                                                         <td>
-                                                            <a href="/view-complaint/{{ $complaint->id }}"><button class="btn btn-sm btn-primary">view</button></a>
-                                                            <button class="btn btn-sm btn-warning">Solved</button>
+                                                            <a href="/assign-employer-to-employee/{{ $active_contract->id }}"><button class="btn btn-sm btn-primary">Make Contract</button></a>
                                                         </td>
                                                     </tr>
                                                     @endforeach
