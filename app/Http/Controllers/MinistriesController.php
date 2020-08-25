@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Ministry;
 use App\User;
+use App\Complaints;
 
 class MinistriesController extends Controller
 {
@@ -15,7 +16,8 @@ class MinistriesController extends Controller
 
     public function getAllMinistries(){
         $all_ministries = Ministry::where('status','active')->get();
-        return view('admin.ministries',compact('all_ministries'));
+        $number_of_messages_sent_to_ministry = Complaints::where('status','ministry')->count();
+        return view('admin.ministries',compact('all_ministries','number_of_messages_sent_to_ministry'));
     }
 
     private function createMinistry(){
@@ -27,6 +29,14 @@ class MinistriesController extends Controller
         $ministry->created_by    = $this->authenticated_user->getLoggedInUser();
         $ministry->save();
         return redirect()->back()->with('msg','A new ministry has been created successfully');
+    }
+
+    protected function editMinistry($id){
+        $edit_ministry = Ministry::where('id',$id)->update(array(
+            'ministry_name' => request()->name,
+            'created_by'    => $this->authenticated_user->getLoggedInUser()
+        ));
+        return redirect()->back()->with('msg','Ministry information has been updated successfully');
     }
 
     protected function validateMinistry(){

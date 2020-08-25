@@ -37,7 +37,7 @@
                                 <div class="card">
                                     <div class="row card-header">
                                         <div class="col-lg-4">
-                                            <h5>A table of all Employers</h5>
+                                            <h5>A Table Of All Employers</h5>
                                         </div>
                                         <div class="col-lg-4"></div>
                                         @if(request()->route()->getName() != "Assign Employer To")
@@ -77,12 +77,13 @@
                                                         <td hidden> {{ $employee_to_be_given_employer[0]->first_name }} {{ $employee_to_be_given_employer[0]->last_name }} {{ $employee_to_be_given_employer[0]->other_name }}</td>
                                                         @else
                                                         <td class="text-center" style="width:20px">
-                                                            <div class="btn btn-sm btn-success">view</div>
+                                                            <a href="/view-info-about-employer/{{ $employer->id }}"><button class="btn btn-sm btn-success">View</button></a>
                                                             <div class="btn btn-sm btn-info">Edit</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
+                                                            <a href="/remove-employers/{{ $employer->id }}"><button class="btn btn-sm btn-danger">Delete</button></a>
                                                         </td>
                                                         @endif
                                                         <td hidden>{{ $employer->id }}</td>
+                                                        <td hidden></td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

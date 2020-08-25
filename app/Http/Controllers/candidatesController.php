@@ -53,7 +53,7 @@ class candidatesController extends Controller
     }
 
     public function getCandidates($id){
-        $all_candidates = Candidates::where('company_id',$id)->get();
+        $all_candidates = Candidates::where('company_id',$id)->where('status','!=','deleted')->get();
         return view('admin.candidates',compact('all_candidates'));
     }
 
@@ -61,7 +61,10 @@ class candidatesController extends Controller
         return Candidates::where('id',$id)->update(array('id'=>'2'));
     }
     public function removeCandidates($id){
-        return Candidates::where('id',$id)->delete();
+        Candidates::where('id',$id)->update(array(
+            'status' => 'deleted'
+        ));
+        return redirect()->back()->with('msg','A candidate has been removed successfully');
     }
 
 

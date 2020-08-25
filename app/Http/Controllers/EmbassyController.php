@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Embassy;
 use App\User;
+use App\Complaints;
 
 class EmbassyController extends Controller
 {
@@ -15,7 +16,8 @@ class EmbassyController extends Controller
 
     protected function getAllEmbassies(){
         $all_embassies = Embassy::all();
-        return view('admin.embassies',compact('all_embassies'));
+        $messages_sent_to_embassy = Complaints::where('status','embassy')->count();
+        return view('admin.embassies',compact('all_embassies','messages_sent_to_embassy'));
     }
 
     protected function validatedEmbassy(){
@@ -47,5 +49,14 @@ class EmbassyController extends Controller
         $embassy->created_by   = $this->authenticated_user->getLoggedInUser();
         $embassy->save();
         return redirect()->back()->with('msg','A new embassy has been created successfully');
+    }
+
+    protected function editEmbassyInfo($id){
+        Embassy::where('id',$id)->update(array(
+            'embassy_name'     => request()->name,
+            'embassy_location' => request()->embassy_location,
+            'created_by'       => $this->authenticated_user->getLoggedInUser()
+        ));
+        return redirect()->back()->with('msg','Embassy information has been updated successfully');
     }
 }

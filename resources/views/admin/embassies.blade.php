@@ -39,7 +39,9 @@
                                             </div>
                                             <div class="col-lg-4"></div>
                                             <div class="col-lg-4 text-right">
+                                                @if(count($all_embassies) < 1)
                                                 <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> New Embassy</button>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -49,8 +51,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Embasy Name</th>
-                                                        <th>Location</th>
                                                         <th>Created by</th>
+                                                        <th>Date Of Creation</th>
+                                                        <th>Messages Sent to Embassy</th>
                                                         <th>Options</th>
                                                     </tr>
                                                 </thead>
@@ -58,8 +61,9 @@
                                                     @foreach ($all_embassies as $embassy)
                                                     <tr>
                                                         <td>{{ $embassy->embassy_name }}</td>
-                                                        <td>{{ $embassy->embassy_location }}</td>
                                                         <td>{{ $embassy->created_by }}</td>
+                                                        <td>{{ $embassy->created_at }}</td>
+                                                        <td>{{ $messages_sent_to_embassy }}</td>
                                                         <td>
                                                             <div class="btn btn-sm btn-info">Edit</div>
                                                         </td>

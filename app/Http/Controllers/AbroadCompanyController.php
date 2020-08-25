@@ -68,9 +68,30 @@ class AbroadCompanyController extends Controller
         $all_abroad_companies = AbroadCompany::all();
         return view('admin.abroad_companies',compact('all_abroad_companies'));
     }
-    public function updateAbroadCompany($id){
-        AbroadCompany::where('id',$id)->update(array('status'=>'active'));
+
+    protected function activateCompany($id){
+        AbroadCompany::where('id',$id)->update(array(
+            'status'      => 'active',
+            'updated_by'  => $this->authenticated_user->getLoggedInUser()
+        ));
         return redirect()->back()->with('msg','A company has been successfully activated');
+    }
+
+    public function updateAbroadCompany($id){
+        $company_signature = request()->signature;
+        $company_signature_original = $company_signature->getClientOriginalName();
+        $company_signature->move('company_signatures/',$company_signature_original);
+
+        AbroadCompany::where('id',$id)->update(array(
+            'company_name'=> request()->name,
+            'location'    => request()->location,
+            'job_types'   => request()->job_types,
+            'visa_number' => request()->visa_number,
+            'visa_date'   => request()->visa_date,
+            'signature'   => $company_signature,
+            'updated_by'  => $this->authenticated_user->getLoggedInUser()
+        ));
+        return redirect()->back()->with('msg','A company information has been successfully updated');
     }
     public function removeAbroadCompany($id){
         AbroadCompany::where('id', $id)->update(
@@ -81,4 +102,5 @@ class AbroadCompanyController extends Controller
         );
         return redirect()->back()->with('msg', "A company has been Suspended successfully");
     }
+
 }

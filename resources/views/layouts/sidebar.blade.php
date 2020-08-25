@@ -8,7 +8,7 @@
                 </div>
                 <span class="b-title">Flex Able</span> -->
                 {{-- <img src="../assets/images/logo.png" alt="" class="logo images"> --}}
-                <h3 style="color:white">Logo</h3>
+                <h3 style="color:white">JAAJA</h3>
                 <img src="../assets/images/logo-icon.png" alt="" class="logo-thumb images">
             </a>
             <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!"><span></span></a>
@@ -59,13 +59,14 @@
                         <li class=""><a href="/get-expired-contract" class="waves-effect">Finished Contracts</a></li>
                     </ul>
                 </li>
-                <li class="nav-item pcoded-hasmenu">
+                {{-- <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link waves-effect waves-light"><span class="pcoded-micon"><i class="fa fa-cogs"></i></span><span class="pcoded-mtext">Profiles</span></a>
                     <ul class="pcoded-submenu">
                         <li class=""><a href="/my-profile" class="waves-effect">My Profile</a></li>
                         <li class=""><a href="/other-profiles" class="waves-effect">Other Profiles</a></li>
                     </ul>
-                </li>
+                </li> --}}
+                
             <div class="card text-center">
                 <div class="card-block">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

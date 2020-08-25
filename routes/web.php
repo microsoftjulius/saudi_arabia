@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/', function () { return view('welcome');})->name('Dashboard');
+    Route::get('/', 'HomeController@index')->name('Dashboard');
     Route::get('/general-map','MapsController@getGeneralMap')->name('General Map');
     Route::get('/get-recruites/{id}','candidatesController@getCandidates')->name('Workers');
     Route::get('/create-embassy','EmbassyController@validatedEmbassy')->name('Embassies');
@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/create-ministry','MinistriesController@validateMinistry')->name('Ministries');
     Route::post('/create-candidates','ParentsController@validateCandidates');
     Route::patch('/change-candidates/{id}','candidatesController@changeCandidates');
-    Route::delete('/remove-candidates/{id}','candidatesController@removeCandidates');
+    Route::get('/remove-candidate/{id}','candidatesController@removeCandidates');
     Route::get('/candidates-current-location/{id}','MapsController@getCandidatesCurrentLocation');
     Route::post('/create-parents','ParentsController@createParents');
     Route::get('/get-parents','ParentsController@getParents');
@@ -37,13 +37,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/view-complaint/{id}','ComplaintsController@viewComplaint')->name("Complaint Descrition");
     Route::post('/create-abroadCompany','AbroadCompanyController@validateAbroadCompany');
     Route::get('/get-recruiting-companies','AbroadCompanyController@getAbroadCompany')->name("Recruiting Companies");
-    Route::get('/activate-company/{id}','AbroadCompanyController@updateAbroadCompany');
+    Route::get('/activate-company/{id}','AbroadCompanyController@activateCompany');
     Route::get('/remove-abroadCompany/{id}','AbroadCompanyController@removeAbroadCompany');
     Route::get('/get-all-solved-complaints','ComplaintsController@getAllSolvedComplaints')->name('Solved Complaints');
     Route::post('/create-employers','EmployersController@validateEmployers');
     Route::get('/get-employers','EmployersController@getEmployers')->name("Employers");
     Route::patch('/change-employers/{id}','EmployersController@changeEmployers');
-    Route::delete('/remove-employers/{id}','EmployersController@removeEmployers');
+    Route::get('/remove-employers/{id}','EmployersController@removeEmployers');
     Route::get('/create-new-contract','ContractController@createNewContract')->name("Domestic Workers with no Employers");
     Route::post('/create-ugandanCompany','UgandanCompanyController@createUgandanCompany');
     Route::get('/get-ugandanCompany','UgandanCompanyController@getUgandanCompany');
@@ -59,22 +59,22 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/get-active-licenses','CompaniesController@getActiveLicenses')->name('Active Licenses');
     Route::get('/get-expired-licenses','CompaniesController@getExpiredLicenses')->name('Expired Licenses');
     Route::get('/get-terminated-licenses','CompaniesController@getTerminatedLicenses')->name('Terminated Licenses');
-
+    Route::get('/mark-complaint-as-solved/{id}','ComplaintsController@markComplaintAsSolved');
     Route::post('/create-solutions','SolutionsController@createSolutions');
     Route::get('/get-solutions','SolutionsController@getSolutions');
     Route::patch('/change-solutions/{id}','SolutionsController@changeSolutions');
     Route::delete('/remove-solutions/{id}','SolutionsController@removeSolutions');
-
+    Route::get('/mark-complaint-as-not-solved/{id}','ComplaintsController@markComplaintAsNotSolved');
     Route::post('/create-communicationCentres','CommunicationCentresController@createCommunicationCentres');
     Route::get('/get-communicationCentres','CommunicationCentresController@getCommunicationCentres');
     Route::patch('/change-communicationCentres/{id}','CommunicationCentresController@changeCommunicationCentres');
     Route::delete('/remove-communicationCentres/{id}','CommunicationCentresController@removeCommunicationCentres');
-
+    Route::get('/mark-contract-as-terminated/{id}','ContractController@terminateContract');
     Route::post('/create-permissions','PermissionsController@createPermissions');
     Route::get('/get-permissions','PermissionsController@getPermissions');
     Route::patch('/change-permissions/{id}','PermissionsController@changePermissions');
     Route::delete('/remove-permissions/{id}','PermissionsController@removePermissions');
-
+    Route::get('/activate-terminated-contract/{id}','ContractController@activateContract');
     Route::get('/get-expired-contract','ContractController@getExpiredContracts')->name('Contracts');
     Route::get('/get-ongoing-contracts','ContractController@getOnGoingContracts')->name('Ongoing Contracts');
     Route::get('/get-terminated-contracts','ContractController@getTerminatedContracts')->name('Terminated Contracts');
@@ -82,9 +82,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/get-roles','RolesController@getRoles');
     Route::patch('/change-roles/{id}','RolesController@changeRoles');
     Route::delete('/remove-roles/{id}','RolesController@removeRoles');
-
+    Route::get('/mark-finished-contract-as-active/{id}','ContractController@finishContract');
     Route::post('/report-a-sickness','MedicalStatusController@validateReport');
-
+    Route::get('/view-info-about-employer/{id}','EmployersController@viewAllAboutEmployer');
     Route::post('/create-insuarance-policy','InsurancePolicyController@validateInsurancePolicy');
     Route::post('/register-candidates-current-location','CandidatesCurrentLocation@registerGirlsCurrentLocation');
 });

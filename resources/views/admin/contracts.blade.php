@@ -31,6 +31,7 @@
                         <div class="row">
                             <!-- Zero config table start -->
                             <div class="col-sm-12">
+                                @include('layouts.messages')
                                 <div class="card">
                                     <div class="row card-header">
                                         <div class="col-lg-4">
@@ -66,7 +67,7 @@
                                                         </td>
                                                         <td>
                                                             <div class="btn btn-sm btn-info">view</div>
-                                                            <div class="btn btn-sm btn-warning">terminate</div>
+                                                            <a href="/mark-contract-as-terminated/{{ $active_contract->id }}"><button class="btn btn-sm btn-warning">Terminate Contract</button></a>
                                                         </td>
                                                     </tr>
                                                     @endforeach

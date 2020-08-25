@@ -31,6 +31,7 @@
                         <div class="row">
                             <!-- Zero config table start -->
                             <div class="col-sm-12">
+                                @include('layouts.messages')
                                 <div class="card">
                                     <div class="card-header">
                                         <h5>A table of all {{ request()->route()->getName() }}</h5>
@@ -61,8 +62,8 @@
                                                             <span class="badge badge-info" style="text-transform: capitalize">{{ $complaint->status }}</span>
                                                         </td>
                                                         <td>
-                                                            <a href="/view-complaint/{{ $complaint->id }}"><button class="btn btn-sm btn-primary">view</button></a>
-                                                            <button class="btn btn-sm btn-warning">Solved</button>
+                                                            <a href="/view-complaint/{{ $complaint->id }}"><button class="btn btn-sm btn-primary">View</button></a>
+                                                            <a href="/mark-complaint-as-solved/{{ $complaint->id }}"><button class="btn btn-sm btn-warning">Solved</button></a>
                                                         </td>
                                                     </tr>
                                                     @endforeach

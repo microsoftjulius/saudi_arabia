@@ -39,7 +39,9 @@
                                         </div>
                                         <div class="col-lg-4"></div>
                                         <div class="col-lg-4 text-right">
+                                            @if(count($all_ministries) < 1)
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> New Ministry</button>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -49,6 +51,7 @@
                                                     <tr>
                                                         <th>Ministry Name</th>
                                                         <th>Date of account creation</th>
+                                                        <th>Created By</th>
                                                         <th>Messages Sent to ministry</th>
                                                         <th>Options</th>
                                                     </tr>
@@ -58,7 +61,8 @@
                                                     <tr>
                                                         <td>{{ $ministry->ministry_name }}</td>
                                                         <td>{{ $ministry->created_at }}</td>
-                                                        <td>{{ $ministry->number_of_messages }}</td>
+                                                        <td>{{ $ministry->created_by }}</td>
+                                                        <td>{{ $number_of_messages_sent_to_ministry }}</td>
                                                         <td>
                                                             <div class="btn btn-sm btn-info">Edit</div>
                                                         </td>

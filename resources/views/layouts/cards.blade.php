@@ -15,7 +15,7 @@
             <div class="card-block">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h4 class="text-c-blue">500</h4>
+                        <h4 class="text-c-blue">{{ $number_of_employers }}</h4>
                         <h6 class="text-muted m-b-0">Employers</h6>
                     </div>
                     <div class="col-4 text-right">
@@ -40,7 +40,7 @@
             <div class="card-block">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h4 class="text-c-yellow">2000</h4>
+                        <h4 class="text-c-yellow">{{ $number_of_employees }}</h4>
                         <h6 class="text-muted m-b-0">Employees</h6>
                     </div>
                     <div class="col-4 text-right">
@@ -65,7 +65,7 @@
             <div class="card-block">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h4 class="text-c-green">290</h4>
+                        <h4 class="text-c-green">{{ $number_of_complaints }}</h4>
                         <h6 class="text-muted m-b-0">Complaints</h6>
                     </div>
                     <div class="col-4 text-right">
@@ -90,7 +90,7 @@
             <div class="card-block">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h4 class="text-c-red">1405</h4>
+                        <h4 class="text-c-red">{{ $number_of_user }}</h4>
                         <h6 class="text-muted m-b-0">All Users</h6>
                     </div>
                     <div class="col-4 text-right">

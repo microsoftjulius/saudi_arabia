@@ -97,4 +97,18 @@ class ComplaintsController extends Controller
         ->get();
         return view('admin.complait_description',compact('candidates_complaint_complaint'));
     }
+
+    protected function markComplaintAsSolved($id){
+        Complaints::where('id',$id)->update(array(
+            'status'=>'solved'
+        ));
+        return redirect()->back()->with('msg','Complaint has been marked as solved successfully');
+    }
+
+    protected function markComplaintAsNotSolved($id){
+        Complaints::where('id',$id)->update(array(
+            'status'=>'pending'
+        ));
+        return redirect()->back()->with('msg','Complaint has been marked as Not Solved successfully');
+    }
 }

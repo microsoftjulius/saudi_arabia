@@ -31,6 +31,7 @@
                         <div class="row">
                             <!-- Zero config table start -->
                             <div class="col-sm-12">
+                                @include('layouts.messages')
                                 <div class="card">
                                     <div class="card-header">
                                         <h5>A table of all {{ request()->route()->getName() }}</h5>
@@ -60,7 +61,7 @@
                                                         </td>
                                                         <td>
                                                             <div class="btn btn-sm btn-info">view</div>
-                                                            <div class="btn btn-sm btn-warning">Activate</div>
+                                                            <a href="/mark-finished-contract-as-active/{{ $expired_contract->id }}"><button class="btn btn-sm btn-success">Activate</button></a>
                                                         </td>
                                                     </tr>
                                                     @endforeach

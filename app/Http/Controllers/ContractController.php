@@ -40,15 +40,46 @@ class ContractController extends Controller
         return view('admin.contracts',compact('ongoing_contracts'));
     }
 
-    protected function terminateContract($employee_id, $employer_id){
-        EmployerEmployeeContract::where('employee_id',$employee_id)
-        ->where('employer_id',$employer_id)->update(array(
+    protected function terminateContract($id){
+        EmployerEmployeeContract::where('id',$id)->update(array(
             'contract_status' => 'terminated',
             'updated_by' => $this->authenticated_user->getLoggedInUser()
         )); 
-        $employer = Employers::where('id', $employer_id)->value('efirst_name');
-        $employee = Candidates::where('id', $employee_id)->value('first_name');
-        return redirect()->back()->with('msg','A contract between Employer '. $employer .' and Domestic worker '. $employee .' has been terminated by ' . $this->authenticated_user->getLoggedInUserName());
+        return redirect()->back()->with('msg','You Successfully terminated a contract between the employer and an employee');
+    }
+
+    protected function activateContract($id){
+        $employer_id = EmployerEmployeeContract::join('employers','employers.id','employer_employee_contracts.employer_id')
+        ->where('employer_employee_contracts.id',$id)
+        ->select('employers.id')
+        ->get();
+        foreach($employer_id as $employer){
+            if(Employers::where('id',$employer->id)->where('status','deleted')->exists()){
+                return redirect()->back()->withErrors("The employer was deleted, to activate this contract, the employer needs the be activated");
+            }
+        }
+        EmployerEmployeeContract::where('id',$id)->update(array(
+            'contract_status' => 'active',
+            'updated_by' => $this->authenticated_user->getLoggedInUser()
+        )); 
+        return redirect()->back()->with('msg','You Successfully activated a contract that was terminated');
+    }
+
+    protected function finishContract($id){
+        $employer_id = EmployerEmployeeContract::join('employers','employers.id','employer_employee_contracts.employer_id')
+        ->where('employer_employee_contracts.id',$id)
+        ->select('employers.id')
+        ->get();
+        foreach($employer_id as $employer){
+            if(Employers::where('id',$employer->id)->where('status','deleted')->exists()){
+                return redirect()->back()->withErrors("The employer was deleted, to activate this contract, the employer needs the be activated");
+            }
+        }
+        EmployerEmployeeContract::where('id',$id)->update(array(
+            'contract_status' => 'active',
+            'updated_by' => $this->authenticated_user->getLoggedInUser()
+        )); 
+        return redirect()->back()->with('msg','You have successfully activated a contract that was marked as finished');
     }
 
     protected function createNewContract(){
