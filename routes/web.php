@@ -88,7 +88,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/create-insuarance-policy','InsurancePolicyController@validateInsurancePolicy');
     Route::post('/register-candidates-current-location','CandidatesCurrentLocation@registerGirlsCurrentLocation');
 });
+Route::get('details', function () {
 
+	$ip = '41.210.143.243';
+    $data = \Location::get($ip);
+    dd($data);
+   
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
