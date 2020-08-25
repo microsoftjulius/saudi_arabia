@@ -18,6 +18,7 @@ class MedicalHistory extends Migration
             $table->string('covid19_certificate');
             $table->string('covid19_certificate_date');
             $table->integer('updated_by');
+            $table->enum('status',['active','deleted'])->default('active');
             $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });

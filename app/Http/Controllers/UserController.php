@@ -2,27 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
-    public function __construct(){
-        $this->candidate_instance = new candidatesController;
-        $this->embassy_instance   = new EmbassyController;
-        $this->ministry_instance  = new MinistriesController;
-    }
-    protected function getMinistries(){
-        $all_ministries = $this->ministry_instance->getAllMinistries();
-        return view('admin.ministries',compact('all_ministries'));
-    }
-
-    protected function getEmbassy(){
-        $all_emabssies = $this->embassy_instance->getAllEmbassies();
-        return view('admin.embassies',compact('all_emabssies'));
-    }
-
-    protected function getCandidates($id){
-        $all_candidates = $this->candidate_instance->getCandidates($id);
-        return view('admin.candidates',compact('all_candidates'));
+    public function createUser($id){
+        $company = new User;
+        $company->email = request()->email;
+        $company->category_id = $id;
+        $company->name  = request()->name .' '. request()->last_name .' '. request()->other_name;
+        $company->password = Hash::make(request()->password);
+        $company->save();
     }
 }

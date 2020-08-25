@@ -31,6 +31,7 @@
                         <div class="row">
                             <!-- Zero config table start -->
                             <div class="col-sm-12">
+                                @include('layouts.messages')
                                 <div class="card">
                                     <div class="card-header">
                                         <h5>A table of all {{ request()->route()->getName() }}</h5>
@@ -40,275 +41,32 @@
                                             <table id="simpletable" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
+                                                        <th>Complaint Title</th>
                                                         <th>Employer</th>
                                                         <th>Employee</th>
-                                                        <th>Country</th>
-                                                        <th>Complaint</th>
+                                                        <th>Company</th>
+                                                        <th>Date of Complaint</th>
                                                         <th>Status</th>
                                                         <th>Options</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($all_complaints as $complaint)
                                                     <tr>
-                                                        <td>Quinn Flynn</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
+                                                        <td>{{ $complaint->clause_title }}</td>
+                                                        <td>{{ $complaint->efirst_name }} {{ $complaint->elast_name }} {{ $complaint->eother_name }}</td>
+                                                        <td>{{ $complaint->first_name }} {{ $complaint->last_name }} {{ $complaint->other_name }}</td>
+                                                        <td>{{ $complaint->company_name }}</td>
+                                                        <td>{{ $complaint->created_at }}</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
+                                                            <span class="badge badge-info" style="text-transform: capitalize">{{ $complaint->status }}</span>
                                                         </td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
+                                                            <a href="/view-complaint/{{ $complaint->id }}"><button class="btn btn-sm btn-primary">View</button></a>
+                                                            <a href="/mark-complaint-as-solved/{{ $complaint->id }}"><button class="btn btn-sm btn-warning">Solved</button></a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Garrett Winters</td>
-                                                        <td>Accountant</td>
-                                                        <td>Tokyo</td>
-                                                        <td>63</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Ashton Cox</td>
-                                                        <td>Junior Technical Author</td>
-                                                        <td>San Francisco</td>
-                                                        <td>66</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Cedric Kelly</td>
-                                                        <td>Senior Javascript Developer</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>22</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Airi Satou</td>
-                                                        <td>Accountant</td>
-                                                        <td>Tokyo</td>
-                                                        <td>33</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Brielle Williamson</td>
-                                                        <td>Integration Specialist</td>
-                                                        <td>New York</td>
-                                                        <td>61</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Herrod Chandler</td>
-                                                        <td>Sales Assistant</td>
-                                                        <td>San Francisco</td>
-                                                        <td>59</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Rhona Davidson</td>
-                                                        <td>Integration Specialist</td>
-                                                        <td>Tokyo</td>
-                                                        <td>55</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Colleen Hurst</td>
-                                                        <td>Javascript Developer</td>
-                                                        <td>San Francisco</td>
-                                                        <td>39</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Sonya Frost</td>
-                                                        <td>Software Engineer</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>23</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Jena Gaines</td>
-                                                        <td>Office Manager</td>
-                                                        <td>London</td>
-                                                        <td>30</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Quinn Flynn</td>
-                                                        <td>Support Lead</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>22</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Charde Marshall</td>
-                                                        <td>Regional Director</td>
-                                                        <td>San Francisco</td>
-                                                        <td>36</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Haley Kennedy</td>
-                                                        <td>Senior Marketing Designer</td>
-                                                        <td>London</td>
-                                                        <td>43</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Tatyana Fitzpatrick</td>
-                                                        <td>Regional Director</td>
-                                                        <td>London</td>
-                                                        <td>19</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Michael Silva</td>
-                                                        <td>Marketing Designer</td>
-                                                        <td>London</td>
-                                                        <td>66</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Paul Byrd</td>
-                                                        <td>Chief Financial Officer (CFO)</td>
-                                                        <td>New York</td>
-                                                        <td>64</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Gloria Little</td>
-                                                        <td>Systems Administrator</td>
-                                                        <td>New York</td>
-                                                        <td>59</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Bradley Greer</td>
-                                                        <td>Software Engineer</td>
-                                                        <td>London</td>
-                                                        <td>41</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Dai Rios</td>
-                                                        <td>Personnel Lead</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>35</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>

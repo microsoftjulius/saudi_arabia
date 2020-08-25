@@ -31,284 +31,43 @@
                         <div class="row">
                             <!-- Zero config table start -->
                             <div class="col-sm-12">
+                                @include('layouts.messages')
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h5>A table of all {{ request()->route()->getName() }}</h5>
+                                    <div class="row card-header">
+                                        <div class="col-lg-4">
+                                            <h5>A table of all {{ request()->route()->getName() }}</h5>
+                                        </div>
+                                        <div class="col-lg-4"></div>
+                                        <div class="col-lg-4 text-right">
+                                            @if(count($all_ministries) < 1)
+                                            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> New Ministry</button>
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="card-body">
                                         <div class="dt-responsive table-responsive">
                                             <table id="simpletable" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Place Of Birth</th>
-                                                        <th>Date Of Birth</th>
-                                                        <th>Contact</th>
-                                                        <th>Status</th>
+                                                        <th>Ministry Name</th>
+                                                        <th>Date of account creation</th>
+                                                        <th>Created By</th>
+                                                        <th>Messages Sent to ministry</th>
                                                         <th>Options</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($all_ministries as $ministry)
                                                     <tr>
-                                                        <td>Quinn Flynn</td>
-                                                        <td>System Architect</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>61</td>
+                                                        <td>{{ $ministry->ministry_name }}</td>
+                                                        <td>{{ $ministry->created_at }}</td>
+                                                        <td>{{ $ministry->created_by }}</td>
+                                                        <td>{{ $number_of_messages_sent_to_ministry }}</td>
                                                         <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
+                                                            <div class="btn btn-sm btn-info">Edit</div>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Garrett Winters</td>
-                                                        <td>Accountant</td>
-                                                        <td>Tokyo</td>
-                                                        <td>63</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Ashton Cox</td>
-                                                        <td>Junior Technical Author</td>
-                                                        <td>San Francisco</td>
-                                                        <td>66</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Cedric Kelly</td>
-                                                        <td>Senior Javascript Developer</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>22</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Airi Satou</td>
-                                                        <td>Accountant</td>
-                                                        <td>Tokyo</td>
-                                                        <td>33</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Brielle Williamson</td>
-                                                        <td>Integration Specialist</td>
-                                                        <td>New York</td>
-                                                        <td>61</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Herrod Chandler</td>
-                                                        <td>Sales Assistant</td>
-                                                        <td>San Francisco</td>
-                                                        <td>59</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Rhona Davidson</td>
-                                                        <td>Integration Specialist</td>
-                                                        <td>Tokyo</td>
-                                                        <td>55</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Colleen Hurst</td>
-                                                        <td>Javascript Developer</td>
-                                                        <td>San Francisco</td>
-                                                        <td>39</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Sonya Frost</td>
-                                                        <td>Software Engineer</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>23</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Jena Gaines</td>
-                                                        <td>Office Manager</td>
-                                                        <td>London</td>
-                                                        <td>30</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Quinn Flynn</td>
-                                                        <td>Support Lead</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>22</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Charde Marshall</td>
-                                                        <td>Regional Director</td>
-                                                        <td>San Francisco</td>
-                                                        <td>36</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Haley Kennedy</td>
-                                                        <td>Senior Marketing Designer</td>
-                                                        <td>London</td>
-                                                        <td>43</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Tatyana Fitzpatrick</td>
-                                                        <td>Regional Director</td>
-                                                        <td>London</td>
-                                                        <td>19</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Michael Silva</td>
-                                                        <td>Marketing Designer</td>
-                                                        <td>London</td>
-                                                        <td>66</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Paul Byrd</td>
-                                                        <td>Chief Financial Officer (CFO)</td>
-                                                        <td>New York</td>
-                                                        <td>64</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Gloria Little</td>
-                                                        <td>Systems Administrator</td>
-                                                        <td>New York</td>
-                                                        <td>59</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Bradley Greer</td>
-                                                        <td>Software Engineer</td>
-                                                        <td>London</td>
-                                                        <td>41</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Dai Rios</td>
-                                                        <td>Personnel Lead</td>
-                                                        <td>Edinburgh</td>
-                                                        <td>35</td>
-                                                        <td>
-                                                            <span class="badge badge-info">Pending</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
-                                                        </td>
-                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -326,6 +85,46 @@
 </div>
 
 @include('layouts.javascript')
+<form action="/create-ministry" method="post" enctype="multipart/form-data">
+    @csrf
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Ministry</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <label for="name">Ministry Name</label>
+                <input type="text" value="{{ old('name') }}" name="name" id="name" class="form-control">
+            </div>
+            <div class="col-lg-6">
+                <label for="contact">Ministry Email</label>
+                <input type="email" value="{{ old('email') }}" name="email" id="email" class="form-control" autocomplete="off">
+            </div>
+            <div class="col-lg-6">
+                <label for="contact">Ministry Password</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <div class="col-lg-6">
+                <label for="contact">Repeat Password</label>
+                <input type="password" name="password_confirm" id="password_confirm" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+    </div>
+</div>
+</div>
+</form>
 
 <!-- datatable Js -->
 <script src="{{ asset('/assets/plugins/data-tables/js/datatables.min.js')}}"></script>

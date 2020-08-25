@@ -18,6 +18,7 @@ class CommunicationCentres extends Migration
             $table->string('contact');
             $table->string('location');
             $table->integer('updated_by');
+            $table->enum('status',['active','deleted'])->default('active');
             $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });

@@ -20,6 +20,7 @@ class CreateInsurancePoliciesTable extends Migration
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->softDeletes('deleted_at',0);
+            $table->enum('status',['active','deleted'])->default('active');
             $table->timestamps();
         });
     }
