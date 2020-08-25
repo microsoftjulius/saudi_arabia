@@ -18,6 +18,7 @@ class Employers extends Migration
             $table->string('photo');
             $table->string('created_by');
             $table->integer('updated_by')->nullable();
+            $table->enum('status',['active','deleted'])->default('active');
             $table->softDeletes('deleted_at',0);
             $table->timestamps();
         });

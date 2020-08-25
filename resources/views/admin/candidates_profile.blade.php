@@ -41,16 +41,22 @@
                                                             <table class="table table-responsive invoice-table table-borderless p-l-20">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><a href="/" class="b-brand">
+                                                                        <td><a href="#" class="b-brand">
                                                                                 <img class="img-fluid" src="{{ asset('/candidates_passport_photos/'.$single_candidate->passport_photo) }}" alt="{{ $single_candidate->passport_photo }}" style="width:200px;height:200px">
                                                                             </a>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>Company name : {{ $single_candidate->name }}</td>
+                                                                        <td>Company name : {{ $single_candidate->company_name }}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>Candidates Parent : {{ $single_candidate->pfirst_name }} {{ $single_candidate->plast_name }} {{ $single_candidate->pother_name }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Parents Contact : {{ $single_candidate->pcontact }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Candidates Names : {{ $single_candidate->first_name }} {{ $single_candidate->last_name }} {{ $single_candidate->other_name }}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="text-transform: capitalize">Employement Status : 
@@ -66,7 +72,7 @@
                                                                     </tr>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Candidates Conset Letter : {{ $single_candidate->consent_letter }}</td>
+                                                                    <td>Candidates Conset Letter : <a href="{{ asset('candidates_conset_letter/'.$single_candidate->consent_letter) }}" target="_blank">Click to view conset letter</a></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Candidates Next of kin : {{ $single_candidate->next_of_kin }}</td>
@@ -116,8 +122,8 @@
                                         </div>
                                         <div class="row text-center">
                                             <div class="col-sm-12 invoice-btn-group text-center">
+                                                <a href="{{ url()->previous() }}"><button type="button" class="btn waves-effect waves-light btn-secondary m-b-10 "><i class="fa fa-arrow-left"></i> Back</button></a>
                                                 <button type="button" class="btn waves-effect waves-light btn-primary btn-print-invoice m-b-10">Print</button>
-                                                <button type="button" class="btn waves-effect waves-light btn-secondary m-b-10 ">Cancel</button>
                                             </div>
                                         </div>
                                     </div>

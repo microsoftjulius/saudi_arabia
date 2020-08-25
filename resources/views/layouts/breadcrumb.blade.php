@@ -3,12 +3,12 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="page-header-title">
+                    @if(request()->route()->getName() == "Assign Employer To")
+                    <h5>{{ request()->route()->getName() }} {{ $employee_to_be_given_employer[0]->first_name }} {{ $employee_to_be_given_employer[0]->last_name }} {{ $employee_to_be_given_employer[0]->other_name }}</h5>
+                    @else
                     <h5>{{ request()->route()->getName() }}</h5>
+                    @endif
                 </div>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href=""><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="#!">{{ request()->route()->getName() }}</a></li>
-                </ul>
             </div>
         </div>
     </div>

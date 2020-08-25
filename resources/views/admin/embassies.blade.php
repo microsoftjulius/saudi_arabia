@@ -39,7 +39,9 @@
                                             </div>
                                             <div class="col-lg-4"></div>
                                             <div class="col-lg-4 text-right">
+                                                @if(count($all_embassies) < 1)
                                                 <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> New Embassy</button>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -49,20 +51,21 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Embasy Name</th>
-                                                        <th>Location</th>
                                                         <th>Created by</th>
+                                                        <th>Date Of Creation</th>
+                                                        <th>Messages Sent to Embassy</th>
                                                         <th>Options</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($all_emabssies as $embassy)
+                                                    @foreach ($all_embassies as $embassy)
                                                     <tr>
                                                         <td>{{ $embassy->embassy_name }}</td>
-                                                        <td>{{ $embassy->embassy_location }}</td>
                                                         <td>{{ $embassy->created_by }}</td>
+                                                        <td>{{ $embassy->created_at }}</td>
+                                                        <td>{{ $messages_sent_to_embassy }}</td>
                                                         <td>
-                                                            <div class="btn btn-sm btn-success">view</div>
-                                                            <div class="btn btn-sm btn-danger">delete</div>
+                                                            <div class="btn btn-sm btn-info">Edit</div>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -98,20 +101,20 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-lg-12">
-                <label for="embassy_name">Embassy Name</label>
-                <input type="text" value="{{ old('embassy_name') }}" name="embassy_name" id="embassy_name" placeholder="eg. Saudi Arabia Embassy" class="form-control">
+                <label for="name">Embassy Name</label>
+                <input type="text" value="{{ old('name') }}" name="name" id="name" placeholder="eg. Saudi Arabia Embassy" class="form-control">
             </div>
             <div class="col-lg-6">
                 <label for="embassy_location">Embassy Location</label>
                 <input type="text" value="{{ old('embassy_location') }}" name="embassy_location" id="embassy_location" class="form-control">
             </div>
             <div class="col-lg-6">
-                <label for="embassy_email">Embassy Email</label>
-                <input type="text" value="{{ old('embassy_email') }}" name="embassy_email" id="embassy_email" class="form-control">
+                <label for="email">Embassy Email</label>
+                <input type="text" value="{{ old('email') }}" name="email" id="email" class="form-control">
             </div>
             <div class="col-lg-6">
-                <label for="embassy_password">Embassy Password</label>
-                <input type="password" value="{{ old('embassy_password') }}" name="embassy_password" id="embassy_password" class="form-control">
+                <label for="password">Embassy Password</label>
+                <input type="password" value="{{ old('password') }}" name="password" id="password" class="form-control">
             </div>
             <div class="col-lg-6">
                 <label for="embassy_cpassword">Confirm Password</label>

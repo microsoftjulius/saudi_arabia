@@ -15,6 +15,9 @@ class CreateMinistriesTable extends Migration
     {
         Schema::create('ministries', function (Blueprint $table) {
             $table->id();
+            $table->string('ministry_name');
+            $table->integer('created_by');
+            $table->enum('status',['active','deleted'])->default('active');
             $table->timestamps();
         });
     }

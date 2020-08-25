@@ -17,6 +17,7 @@ class CreateCandidatesEmployersTable extends Migration
             $table->id();
             $table->integer('employer_id');
             $table->integer('candidates_id');
+            $table->enum('status',['active','deleted'])->default('active');
             $table->timestamps();
         });
     }

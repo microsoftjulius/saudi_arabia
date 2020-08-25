@@ -33,7 +33,7 @@ class Candidates extends Migration
             $table->string('consent_letter');
             $table->integer('updated_by')->nullable();
             $table->softDeletes('deleted_at',0);
-            $table->enum('status',['pending','approved'])->default('pending');
+            $table->enum('status',['pending','approved','deleted'])->default('pending');
             $table->timestamps();
         });
     }
