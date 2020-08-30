@@ -93,9 +93,10 @@ Route::get('details', function () {
 	$ip = '41.210.143.243';
     $data = \Location::get($ip);
     dd($data);
-   
+    return $data->zipCode;
 });
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/get-my-complaints','ComplaintsController@getMyComplaints');
 

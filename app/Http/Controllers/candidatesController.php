@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\candidates as Candidates;
 use App\Http\Resources\candidatesResource;
+use App\User;
 
 class candidatesController extends Controller
 {
@@ -31,6 +32,7 @@ class candidatesController extends Controller
         $candidates->occupation                 = request()->candidates_occupation;
         $candidates->consent_letter             = $candidates_conset_letter_original_name;
         $candidates->created_by                 = $created_by;
+        $candidates->candidates_user_id         = User::where('email',request()->email)->value('id');
         $candidates->parent_id                  = $parent_id;
         $candidates->passport_photo             = $passport_photo_original_name;
         $candidates->company_id                 = request()->company_id;

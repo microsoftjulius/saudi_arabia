@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\CandidatesCurrentLocation as CandidatesCurrentLocationModel;
 use Carbon\Carbon;
 
 class LoginController extends Controller
@@ -44,7 +45,27 @@ class LoginController extends Controller
     {
         $user->update([
             'last_login_at' => Carbon::now()->toDateTimeString(),
-            'last_login_ip' => $request->getClientIp()
+            'last_login_ip' => $request->getClientIp(),
+            'longitude'     => $data->longitude,
+            'latitude'      => $data->latitude,
+            'country_name'  => $data->countryName,
+            'city_name'     => $data->cityName,
         ]);
+
+
+        // CandidatesCurrentLocationModel::create(array(
+        //     'candidate_id'  => auth()->user()->id,
+        //     'longitude'     => $data->longitude,
+        //     'latitude'      => $data->latitude,
+        //     'last_login_at' => Carbon::now()->toDateTimeString(),
+        //     'last_login_ip' => $request->getClientIp(),
+        //     'country_code'  => $data->countryCode,
+        //     'region_name'   => $data->regionName,
+        //     'zip_code'      => $data->zipCode,
+        //     'iso_code'      => $data->isoCode,
+        //     'postal_code'   => $data->postalCode,
+        //     'metro_code'    => $data->metroCode,
+        //     'area_code'     => $data->areaCode
+        // )->except('startPoint'));
     }
 }

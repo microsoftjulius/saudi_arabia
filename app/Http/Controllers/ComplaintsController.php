@@ -111,4 +111,11 @@ class ComplaintsController extends Controller
         ));
         return redirect()->back()->with('msg','Complaint has been marked as Not Solved successfully');
     }
+
+    protected function getMyComplaints(){
+        $my_complaints = Complaints::join('contracts','contracts.id','complaints.contract_id')
+        ->select('complaints.complaint','complaints.evidence','complaints.status','contracts.clause_title')
+        ->get();
+        return response()->json($my_complaints);
+    }
 }
