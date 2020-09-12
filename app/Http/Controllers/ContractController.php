@@ -14,32 +14,71 @@ class ContractController extends Controller
     }
 
     protected function getExpiredContracts(){
+        if(auth()->user()->category_id == 1){
+            $expired_contracts = $this->getCompaniesExpiredContracts(auth()->user()->id);
+        }else{
         $expired_contracts = EmployerEmployeeContract::join('candidates','candidates.id','employer_employee_contracts.employee_id')
         ->join('employers','employers.id','employer_employee_contracts.employer_id')->where('contract_status','finished')
         ->select('employer_employee_contracts.*','employers.efirst_name','employers.elast_name','employers.eother_name','candidates.first_name',
         'candidates.last_name','candidates.other_name')
         ->get();
+        }
         return view('admin.expired_contracts',compact('expired_contracts'));
     }
 
+    private function getCompaniesExpiredContracts($company_id){
+        return EmployerEmployeeContract::join('candidates','candidates.id','employer_employee_contracts.employee_id')
+        ->join('employers','employers.id','employer_employee_contracts.employer_id')->where('contract_status','finished')
+        ->where('candidates.company_id',$company_id)
+        ->select('employer_employee_contracts.*','employers.efirst_name','employers.elast_name','employers.eother_name','candidates.first_name',
+        'candidates.last_name','candidates.other_name')
+        ->get();
+    }
+
     protected function getTerminatedContracts(){
+        if(auth()->user()->category_id == 1){
+            $terminated_contracts = $this->getCompaniesTerminatedContracts(auth()->user()->id);
+        }else{
         $terminated_contracts = EmployerEmployeeContract::join('candidates','candidates.id','employer_employee_contracts.employee_id')
         ->join('employers','employers.id','employer_employee_contracts.employer_id')->where('contract_status','terminated')
         ->select('employer_employee_contracts.*','employers.efirst_name','employers.elast_name','employers.eother_name','candidates.first_name',
         'candidates.last_name','candidates.other_name')
         ->get();
+        }
         return view('admin.terminated_contracts',compact('terminated_contracts'));
     }
 
+    private function getCompaniesTerminatedContracts($company_id){
+        return EmployerEmployeeContract::join('candidates','candidates.id','employer_employee_contracts.employee_id')
+        ->join('employers','employers.id','employer_employee_contracts.employer_id')->where('contract_status','terminated')
+        ->where('candidates.company_id',$company_id)
+        ->select('employer_employee_contracts.*','employers.efirst_name','employers.elast_name','employers.eother_name','candidates.first_name',
+        'candidates.last_name','candidates.other_name')
+        ->get();
+    }
+
     protected function getOnGoingContracts(){
+        if(auth()->user()->category_id == 1){
+            $ongoing_contracts = $this->getCompaniesOnGoingContracts(auth()->user()->id);
+        }else{
         $ongoing_contracts = EmployerEmployeeContract::join('candidates','candidates.id','employer_employee_contracts.employee_id')
         ->join('employers','employers.id','employer_employee_contracts.employer_id')->where('contract_status','active')
         ->select('employer_employee_contracts.*','employers.efirst_name','employers.elast_name','employers.eother_name','candidates.first_name',
         'candidates.last_name','candidates.other_name')
         ->get();
+        }
         return view('admin.contracts',compact('ongoing_contracts'));
     }
 
+    private function getCompaniesOnGoingContracts($company_id){
+        return EmployerEmployeeContract::join('candidates','candidates.id','employer_employee_contracts.employee_id')
+        ->join('employers','employers.id','employer_employee_contracts.employer_id')->where('contract_status','active')
+        ->where('candidates.company_id',$company_id)
+        ->select('employer_employee_contracts.*','employers.efirst_name','employers.elast_name','employers.eother_name','candidates.first_name',
+        'candidates.last_name','candidates.other_name')
+        ->get();
+    }
+    
     protected function terminateContract($id){
         EmployerEmployeeContract::where('id',$id)->update(array(
             'contract_status' => 'terminated',
@@ -55,7 +94,7 @@ class ContractController extends Controller
         ->get();
         foreach($employer_id as $employer){
             if(Employers::where('id',$employer->id)->where('status','deleted')->exists()){
-                return redirect()->back()->withErrors("The employer was deleted, to activate this contract, the employer needs the be activated");
+                return redirect()->back()->withErrors("The employer was de-activated, to activate this contract, the employer needs the be activated");
             }
         }
         EmployerEmployeeContract::where('id',$id)->update(array(
@@ -83,8 +122,16 @@ class ContractController extends Controller
     }
 
     protected function createNewContract(){
-        $available_employees =Candidates::where('status','pending')->get();
+        if(auth()->user()->category_id == 1){
+            $available_employees = $this->getCompaniesAvailableEmployees(auth()->user()->id);
+        }else{
+        $available_employees = Candidates::where('status','pending')->get();
+        }
         return view('admin.available_employees',compact('available_employees'));
+    }
+
+    private function getCompaniesAvailableEmployees($company_id){
+        return Candidates::where('status','pending')->where('company_id',$company_id)->get();
     }
 
     protected function assignEmployerToEmployee($id){

@@ -43,14 +43,16 @@ class LoginController extends Controller
 
     function authenticated(Request $request, $user)
     {
-        $user->update([
-            'last_login_at' => Carbon::now()->toDateTimeString(),
-            'last_login_ip' => $request->getClientIp(),
-            'longitude'     => $data->longitude,
-            'latitude'      => $data->latitude,
-            'country_name'  => $data->countryName,
-            'city_name'     => $data->cityName,
-        ]);
+    //     $ip = '41.210.143.243';
+    // $data = \Location::get($ip);
+    //     $user->update([
+    //         'last_login_at' => Carbon::now()->toDateTimeString(),
+    //         'last_login_ip' => $request->getClientIp(),
+    //         'longitude'     => $data->longitude,
+    //         'latitude'      => $data->latitude,
+    //         'country_name'  => $data->countryName,
+    //         'city_name'     => $data->cityName,
+    //     ]);
 
 
         // CandidatesCurrentLocationModel::create(array(

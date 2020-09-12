@@ -32,6 +32,7 @@ class candidatesController extends Controller
         $candidates->occupation                 = request()->candidates_occupation;
         $candidates->consent_letter             = $candidates_conset_letter_original_name;
         $candidates->created_by                 = $created_by;
+        $candidates->gender                     = request()->gender;
         $candidates->candidates_user_id         = User::where('email',request()->email)->value('id');
         $candidates->parent_id                  = $parent_id;
         $candidates->passport_photo             = $passport_photo_original_name;
@@ -44,9 +45,9 @@ class candidatesController extends Controller
     protected function getCandidatesInfo($id){
         $candidates_all_info = Candidates::join('parents','parents.id','candidates.parent_id')
         ->join('users','users.id','candidates.created_by')
-        ->join('abroad_companies','abroad_companies.id','candidates.company_id')
+        ->join('companies','companies.id','candidates.company_id')
         ->where('candidates.id',$id)
-        ->select('abroad_companies.company_name','parents.pfirst_name','parents.plast_name','parents.pcontact','parents.paddress',
+        ->select('companies.company_name','parents.pfirst_name','parents.plast_name','parents.pcontact','parents.paddress',
             'candidates.first_name','candidates.last_name','candidates.other_name','candidates.passport_photo',
             'candidates.duration','candidates.place_of_birth','candidates.date_of_birth','candidates.next_of_kin',
             'candidates.education_level','candidates.occupation','candidates.consent_letter','candidates.status','candidates.contact','candidates.created_at')

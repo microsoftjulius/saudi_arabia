@@ -122,9 +122,18 @@
                 <label for="pcontact">Parent Contact</label>
                 <input type="text" name="pcontact" id="pcontact" value="{{ old('pcontact') }}" class="form-control">
             </div>
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <label for="paddress">Parent Address</label>
                 <input type="text" name="paddress" id="paddress" value="{{ old('paddress') }}" class="form-control">
+            </div>
+            <div class="col-lg-6">
+                <label for="gender">Gender</label>
+                <select name="gender" id="gender" class="form-control" value="{{ old('gender') }}">
+                    <option value=""></option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Rather Not Say">Rather Not Say</option>
+                </select>
             </div>
             <div class="col-lg-6">
                 <label for="first_name">Candidate's First Name</label>

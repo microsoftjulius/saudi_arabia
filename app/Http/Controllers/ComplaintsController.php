@@ -50,29 +50,59 @@ class ComplaintsController extends Controller
     }
 
     protected function getComplaints(){
-        $all_complaints = Complaints::join('contracts','contracts.id','complaints.contract_id')
-        ->join('candidates','candidates.id','complaints.created_by')
-        ->join('employer_employee_contracts','employer_employee_contracts.employee_id','candidates.id')
-        ->join('employers','employers.id','employer_employee_contracts.employer_id')
-        ->join('abroad_companies','abroad_companies.id','candidates.company_id')
-        ->where('complaints.status','pending')
-        ->select('employers.efirst_name','employers.elast_name','employers.eother_name','candidates.first_name',
-        'candidates.last_name','candidates.other_name','complaints.*','contracts.clause_title','complaints.id','abroad_companies.company_name')
-        ->get();
+        if(auth()->user()->category_id == 1){
+            $all_complaints = $this->getCompanyComplaints(auth()->user()->id);
+        }else{
+            $all_complaints = Complaints::join('contracts','contracts.id','complaints.contract_id')
+            ->join('candidates','candidates.id','complaints.created_by')
+            ->join('employer_employee_contracts','employer_employee_contracts.employee_id','candidates.id')
+            ->join('employers','employers.id','employer_employee_contracts.employer_id')
+            ->join('companies','companies.id','complaints.company_id')
+            ->where('complaints.status','pending')
+            ->select('employers.efirst_name','employers.elast_name','employers.eother_name','candidates.first_name',
+            'candidates.last_name','candidates.other_name','complaints.*','contracts.clause_title','complaints.id','companies.company_name')
+            ->get();
+        }
         return view('admin.complaints',compact('all_complaints'));
     }
 
-    protected function getAllSolvedComplaints(){
-        $all_solved_complaints = Complaints::join('contracts','contracts.id','complaints.contract_id')
-        ->join('candidates','candidates.id','complaints.created_by')
+    private function getCompanyComplaints($company_id){
+        return Complaints::join('candidates','candidates.id','complaints.created_by')
+        ->join('companies','companies.id','candidates.company_id')
         ->join('employer_employee_contracts','employer_employee_contracts.employee_id','candidates.id')
         ->join('employers','employers.id','employer_employee_contracts.employer_id')
-        ->join('abroad_companies','abroad_companies.id','candidates.company_id')
-        ->where('complaints.status','solved')
-        ->select('employers.efirst_name','employers.elast_name','employers.eother_name','candidates.first_name',
-        'candidates.last_name','candidates.other_name','complaints.*','contracts.clause_title','complaints.id','abroad_companies.company_name')
+        ->join('contracts','contracts.id','complaints.contract_id')
+        ->where('complaints.company_id',$company_id)
+        ->where('complaints.status','pending')
         ->get();
+    }
+
+    protected function getAllSolvedComplaints(){
+        if(auth()->user()->category_id == 1){
+            $all_solved_complaints = $this->getSolvedCompanyComplaints(auth()->user()->id);
+        }else{
+            $all_solved_complaints = Complaints::join('contracts','contracts.id','complaints.contract_id')
+                ->join('candidates','candidates.id','complaints.created_by')
+                ->join('employer_employee_contracts','employer_employee_contracts.employee_id','candidates.id')
+                ->join('employers','employers.id','employer_employee_contracts.employer_id')
+                ->join('companies','companies.id','complaints.company_id')
+                ->where('complaints.status','solved')
+                ->select('employers.efirst_name','employers.elast_name','employers.eother_name','candidates.first_name',
+                'candidates.last_name','candidates.other_name','complaints.*','contracts.clause_title','complaints.id','companies.company_name')
+                ->get();
+        }
         return view('admin.solved_complaints',compact('all_solved_complaints'));
+    }
+
+    private function getSolvedCompanyComplaints($company_id){
+        return Complaints::join('candidates','candidates.id','complaints.created_by')
+        ->join('companies','companies.id','candidates.company_id')
+        ->join('employer_employee_contracts','employer_employee_contracts.employee_id','candidates.id')
+        ->join('employers','employers.id','employer_employee_contracts.employer_id')
+        ->join('contracts','contracts.id','complaints.contract_id')
+        ->where('complaints.company_id',$company_id)
+        ->where('complaints.status','solved')
+        ->get();
     }
 
     protected function changeComplaints($id){
@@ -88,11 +118,11 @@ class ComplaintsController extends Controller
         ->join('candidates','candidates.id','complaints.created_by')
         ->join('employer_employee_contracts','employer_employee_contracts.employee_id','candidates.id')
         ->join('employers','employers.id','employer_employee_contracts.employer_id')
-        ->join('abroad_companies','abroad_companies.id','candidates.company_id')
+        ->join('companies','companies.id','complaints.company_id')
         ->where('complaints.id',$id)
         ->select('employers.efirst_name','employers.elast_name','employers.eother_name','candidates.first_name',
         'candidates.last_name','candidates.other_name','complaints.*','contracts.clause_title',
-        'abroad_companies.company_name','contracts.english_version','contracts.arabic_version',
+        'companies.company_name','contracts.english_version','contracts.arabic_version',
         'contracts.clause','employers.econtact','employers.address','complaints.created_at')
         ->get();
         return view('admin.complait_description',compact('candidates_complaint_complaint'));
