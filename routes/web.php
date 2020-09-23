@@ -85,8 +85,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/mark-finished-contract-as-active/{id}','ContractController@finishContract');
     Route::post('/report-a-sickness','MedicalStatusController@validateReport');
     Route::get('/view-info-about-employer/{id}','EmployersController@viewAllAboutEmployer');
+    Route::get('/get-all-complaints-for-deployment-team','ComplaintsController@getComplaintsForDeployment')->name("Complaints");
+    Route::get('/get-all-pending-complaints-for-deployment-team','ComplaintsController@getPendingComplaintsForDeployment')->name("Pending Complaints");
+    Route::get('/get-all-solved-complaints-for-deployment-team','ComplaintsController@getSolvedComplaintsForDeployment')->name("Solved Complaints");
     Route::post('/create-insuarance-policy','InsurancePolicyController@validateInsurancePolicy');
     Route::post('/register-candidates-current-location','CandidatesCurrentLocation@registerGirlsCurrentLocation');
+    Route::get('/get-company-domestic-workers','candidatesController@getCompanyCandidates')->name("Company domestic workers");
+    Route::get('/get-company-deleted-domestic-workers','candidatesController@getDeletedCompanyCandidates')->name("Deleted domestic workers");
+    Route::get('/view-complaint/{complaint_id}','ComplaintsController@viewComplaint')->name("Complaints");
+    Route::get('/get-all-companies','CompaniesController@getAllCompanies')->name("All Companies");
 });
 Route::get('details', function () {
 

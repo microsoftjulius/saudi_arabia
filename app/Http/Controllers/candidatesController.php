@@ -55,20 +55,29 @@ class candidatesController extends Controller
         return view('admin.candidates_profile',compact('candidates_all_info'));
     }
 
-    public function getCandidates($id){
+    protected function getCandidates($id){
         $all_candidates = Candidates::where('company_id',$id)->where('status','!=','deleted')->get();
         return view('admin.candidates',compact('all_candidates'));
     }
 
-    public function changeCandidates($id){
+    protected function changeCandidates($id){
         return Candidates::where('id',$id)->update(array('id'=>'2'));
     }
-    public function removeCandidates($id){
+    protected function removeCandidates($id){
         Candidates::where('id',$id)->update(array(
             'status' => 'deleted'
         ));
         return redirect()->back()->with('msg','A candidate has been removed successfully');
     }
 
+    protected function getCompanyCandidates(){
+        $companies_candidates = Candidates::where('company_id',auth()->user()->id)->where('status','!=','deleted')->get();
+        return view('admin.company_candidates',compact('companies_candidates'));
+    }
+
+    protected function getDeletedCompanyCandidates(){
+        $companies_deleted_candidates = Candidates::where('company_id',auth()->user()->id)->where('status','deleted')->get();
+        return view('admin.company_deleted_candidates',compact('companies_deleted_candidates'));
+    }
 
 }

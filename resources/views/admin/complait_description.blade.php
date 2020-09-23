@@ -63,11 +63,13 @@
                                         </p>
                                     </div>
                                 </div>
+                                <a href="/candidates-current-location/{{ $complaints->candidates_user_id }}"><button class="btn btn-sm btn-primary"><i class="fa fa-map-marker"></i>Locate Complainer</button></a>
                             </div>
                             @endforeach
                             <!-- [ complaint-description ] end -->
                         </div>
-						<!-- [ Main Content ] end -->
+                        <!-- [ Main Content ] end -->
+                        
 					</div>
 				</div>
 			</div>

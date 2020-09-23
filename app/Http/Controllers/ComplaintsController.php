@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Complaints;
 use DB;
 use App\Http\Resources\ComplaintsResource;
+use Carbon\Carbon;
 
 class ComplaintsController extends Controller
 {
@@ -123,7 +124,7 @@ class ComplaintsController extends Controller
         ->select('employers.efirst_name','employers.elast_name','employers.eother_name','candidates.first_name',
         'candidates.last_name','candidates.other_name','complaints.*','contracts.clause_title',
         'companies.company_name','contracts.english_version','contracts.arabic_version',
-        'contracts.clause','employers.econtact','employers.address','complaints.created_at')
+        'contracts.clause','employers.econtact','employers.address','complaints.created_at','complaints.id','candidates.candidates_user_id')
         ->get();
         return view('admin.complait_description',compact('candidates_complaint_complaint'));
     }
@@ -147,5 +148,86 @@ class ComplaintsController extends Controller
         ->select('complaints.complaint','complaints.evidence','complaints.status','contracts.clause_title')
         ->get();
         return response()->json($my_complaints);
+    }
+
+    protected function getComplaintsForDeployment(){
+        $complaints_for_deployment = Complaints::join('contracts','contracts.id','complaints.contract_id')
+        ->join('employer_employee_contracts','employer_employee_contracts.employee_id','complaints.created_by')
+        ->join('employers','employers.id','employer_employee_contracts.employer_id')
+        ->join('candidates','candidates.id','employer_employee_contracts.employee_id')
+        ->join('companies','companies.id','candidates.company_id')
+        ->select('complaints.complaint','complaints.evidence','complaints.status','contracts.clause_title','employers.efirst_name',
+            'employers.elast_name','employers.eother_name','candidates.first_name','candidates.last_name','candidates.other_name',
+            'companies.company_name','complaints.created_at','complaints.id','candidates.candidates_user_id')
+        ->get();
+        return view('admin.complaints_for_deployment',compact('complaints_for_deployment'));
+    }
+
+    protected function getPendingComplaintsForDeployment(){
+        $pending_complaints_for_deployment = Complaints::join('contracts','contracts.id','complaints.contract_id')
+        ->join('employer_employee_contracts','employer_employee_contracts.employee_id','complaints.created_by')
+        ->join('employers','employers.id','employer_employee_contracts.employer_id')
+        ->join('candidates','candidates.id','employer_employee_contracts.employee_id')
+        ->join('companies','companies.id','candidates.company_id')
+        ->select('complaints.complaint','complaints.evidence','complaints.status','contracts.clause_title','employers.efirst_name',
+            'employers.elast_name','employers.eother_name','candidates.first_name','candidates.last_name','candidates.other_name',
+            'companies.company_name','complaints.created_at','complaints.id')
+            ->where('complaints.status','pending')
+        ->get();
+        return view('admin.pending_complaints_for_deployment',compact('pending_complaints_for_deployment'));
+    }
+
+    protected function getSolvedComplaintsForDeployment(){
+        $solved_complaints_for_deployment = Complaints::join('contracts','contracts.id','complaints.contract_id')
+        ->join('employer_employee_contracts','employer_employee_contracts.employee_id','complaints.created_by')
+        ->join('employers','employers.id','employer_employee_contracts.employer_id')
+        ->join('candidates','candidates.id','employer_employee_contracts.employee_id')
+        ->join('companies','companies.id','candidates.company_id','candidates.candidates_user_id')
+        ->where('complaints.status','solved')
+        ->select('complaints.complaint','complaints.evidence','complaints.status','contracts.clause_title','employers.efirst_name',
+        'employers.elast_name','employers.eother_name','candidates.first_name','candidates.last_name','candidates.other_name',
+        'companies.company_name','complaints.created_at','complaints.id')
+        ->get();
+        return view('admin.solved_complaints_for_deployment',compact('solved_complaints_for_deployment'));
+    }
+    
+    /**
+     * This function counts the number of complaints
+     */
+    public function countAllComplaints(){
+        return Complaints::count();
+    }
+
+    /**
+     * this function counts the number of pending complaints
+     */
+    public function countPendingComplaints(){
+        return Complaints::where('status','pending')->count();
+    }
+    /**
+     * This function counts the number of solved complaints
+     */
+    public function countSolvedFunctions(){
+        return Complaints::where('status','solved')->count();
+    }
+    /**
+     * This function counts the number of complaints that are pending for over a week
+     */
+    public function countDelayedComplaints(){
+        /**
+         * get all complaints,
+         * for each complaint, get the dates it was posted
+         * if the date difference from now is 7
+         * count it
+         */
+
+        $complaints_count_array = [];
+        $all_complaints = Complaints::where('status','pending')->get();
+        foreach($all_complaints as $i => $complaints){
+            if(Carbon::createFromFormat('Y-m-d H:s:i', Carbon::now())->diffInDays($complaints->created_at) > 8){
+                array_push($complaints_count_array, $i);
+            }
+        }
+        return count($complaints_count_array);
     }
 }

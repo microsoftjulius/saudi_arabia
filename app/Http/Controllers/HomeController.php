@@ -22,6 +22,7 @@ class HomeController extends Controller
 
         $this->complaints_per_gender_per_month = new ComplaintsForGenderPerMonth;
         $this->broken_contracts_instance = new BrokenContractsClauseController;
+        $this->complaints_instance = new ComplaintsController;
     }
 
     /**
@@ -105,8 +106,12 @@ class HomeController extends Controller
         $company_with_most_complaints                           = $this->getCompanyWithMostComplaints();
         $number_of_employers  = $this->countEmployers();
         $number_of_employees  = $this->countEmployees();
-        $number_of_complaints = $this->countComplaints();
+        $number_of_complaints = $this->complaints_instance->countAllComplaints();
         $number_of_user       = $this->countAllUsers();
+        $count_delayed_complaints = $this->complaints_instance->countDelayedComplaints();
+        $count_solved_complaints = $this->complaints_instance->countSolvedFunctions();
+        $count_pending_complaints = $this->complaints_instance->countPendingComplaints();
+        $count_complaints = $this->complaints_instance->countAllComplaints();
         return view('welcome', compact('number_of_employees','number_of_employers','number_of_complaints'
         ,'number_of_user','company_with_most_complaints','company_with_least_complaines',
         'number_of_complaints_for_company_with_most_complaints','number_of_complaints_for_company_with_least_complaints',
@@ -127,7 +132,8 @@ class HomeController extends Controller
         'count_of_clause_seventeen_a_broken','count_of_clause_seventeen_b_broken','count_of_clause_seventeen_c_broken','count_of_clause_seventeen_d_broken',
         'count_of_clause_seventeen_e_broken','count_of_clause_seventeen_f_broken','count_of_clause_seventeen_g_broken','count_of_clause_seventeen_h_broken',
         'count_of_clause_eighteen_broken','count_of_clause_nineteen_broken',
-        'count_of_clause_twenty_broken','count_of_clause_twenty_one_broken','count_of_clause_twenty_two_broken','count_of_clause_twenty_three_broken'));
+        'count_of_clause_twenty_broken','count_of_clause_twenty_one_broken','count_of_clause_twenty_two_broken','count_of_clause_twenty_three_broken',
+        'count_delayed_complaints','count_solved_complaints','count_pending_complaints','count_complaints'));
     }
 
     private function countEmployers(){
@@ -136,10 +142,6 @@ class HomeController extends Controller
 
     private function countEmployees(){
         return User::where('category_id',5)->count();
-    }
-
-    private function countComplaints(){
-        return Complaints::count();
     }
 
     private function countAllUsers(){

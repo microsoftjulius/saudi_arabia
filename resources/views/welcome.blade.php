@@ -35,7 +35,11 @@
                                 @include('layouts.breadcrumb')
                                 <!-- [ breadcrumb ] end -->
                                 <!-- [ Main Content ] start -->
-                                @include('layouts.cards')
+                                @if(auth()->user()->category_id == 7)
+                                    @include('layouts.deployment_cards')
+                                @else
+                                    @include('layouts.cards')
+                                @endif
                                 @if(request()->route()->getName() == "Dashboard")
                                 <div class="row">
                                     <div class="col-md-6">
