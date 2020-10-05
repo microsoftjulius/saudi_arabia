@@ -94,6 +94,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/get-company-deleted-domestic-workers','candidatesController@getDeletedCompanyCandidates')->name("Deleted domestic workers");
     Route::get('/view-complaint/{complaint_id}','ComplaintsController@viewComplaint')->name("Complaints");
     Route::get('/get-all-companies','CompaniesController@getAllCompanies')->name("All Companies");
+    Route::get('/get-new-complaint','ComplaintsController@getNewComplaint');
+    Route::get('/update-status-value-as-seen','ComplaintsController@updateValueSeen');
+    Route::get('/play-video/{complaint_id}','ComplaintsController@playVideo');
 });
 Route::get('details', function () {
 

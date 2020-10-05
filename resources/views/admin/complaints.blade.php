@@ -46,6 +46,7 @@
                                                         <th>Employee</th>
                                                         <th>Company</th>
                                                         <th>Date of Complaint</th>
+                                                        <th>Evidence</th>
                                                         <th>Status</th>
                                                         <th>Options</th>
                                                     </tr>
@@ -58,6 +59,11 @@
                                                         <td>{{ $complaint->first_name }} {{ $complaint->last_name }} {{ $complaint->other_name }}</td>
                                                         <td>{{ $complaint->company_name }}</td>
                                                         <td>{{ $complaint->created_at }}</td>
+                                                        <td>
+                                                            @if(!empty($complaint->evidence))
+                                                                <a href="/play-video/{{ $complaint->id }}" target="_blank">play video</a>
+                                                            @endif
+                                                        </td>
                                                         <td>
                                                             <span class="badge badge-info" style="text-transform: capitalize">{{ $complaint->status }}</span>
                                                         </td>

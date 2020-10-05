@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/create-complaints/{id}','ComplaintsController@complainApi');
+Route::post('/check-credentials','UserController@loginUser');
+Route::get('/get-my-complaints/{id}','ComplaintsController@getMyComplaints');
+Route::get('/get-my-number-of-pending-complaints/{id}','ComplaintsController@getMyNumberOfPendingComplaints');
+Route::get('/get-my-number-of-solved-complaints/{id}','ComplaintsController@getMyNumberOfApprovedComplaints');
+Route::get('/get-my-number-of-complaints/{id}','ComplaintsController@getMyNumberOfComplaints');
+Route::get('/get-my-pending-complaints/{id}','ComplaintsController@getMyPendingComplaints');
+Route::get('/get-my-solved-complaints/{id}','ComplaintsController@getMySolvedComplaints');
+Route::get('/get-my-statistics/{id}','ComplaintsController@getMyStatistics');

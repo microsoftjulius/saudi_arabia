@@ -54,7 +54,7 @@
                                                     <tr>
                                                         <td>{{ $company->company_name }} </td>
                                                         <td>{{ $company->location }}</td>
-                                                        <td>{{ $company->job_type }}</td>
+                                                        <td>{{ $company->job_types }}</td>
                                                         <td>{{ $company->signature }}</td>
                                                         <td class="text-center">
                                                             <span class="badge badge-secondary">{{ $company->status }}</span>

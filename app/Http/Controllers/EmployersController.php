@@ -51,7 +51,7 @@ class EmployersController extends Controller
             return redirect()->back()->withInput()->withErrors("Please enter the Password to continue");
         }elseif(request()->password != request()->password_confirm){
             return redirect()->back()->withInput()->withErrors("Please make sure the two passwords match");
-        }elseif(Employers::where('contact',request()->contact)->exists()){
+        }elseif(Employers::where('econtact',request()->contact)->exists()){
             return redirect()->back()->withInput()->withErrors("The supplied phone number is already registered hence can't be used again");
         }else{
             return $this->createEmployers();

@@ -230,4 +230,94 @@ class ComplaintsController extends Controller
         }
         return count($complaints_count_array);
     }
+
+    protected function getNewComplaint(){
+        return Complaints::where('new_complaint_status','pending')->get();
+    }
+
+    protected function updateValueSeen(){
+        $complaint_id = request()->complaint_id;
+        Complaints::where('id',$complaint_id)->update(array(
+            'new_complaint_status' => 'seen'
+        ));
+        return redirect()->back()->with('msg','New Complaint Marked as Read');
+    }
+
+    //new routes from the web online
+
+
+    protected function getMyNumberOfComplaints($id){
+        $complaints = Complaints::join('contracts','contracts.id','complaints.contract_id')
+        ->join('users','users.id','complaints.created_by')
+        ->where('users.id',$id)->count();
+        
+        return $complaints;
+    }
+    
+    protected function getMyNumberOfPendingComplaints($id){
+        $pending_complaints = Complaints::join('contracts','contracts.id','complaints.contract_id')
+        ->join('users','users.id','complaints.created_by')
+        ->where('complaints.status','pending')
+        ->where('users.id',$id)->count();
+        
+        return $pending_complaints;
+    }
+    
+    protected function getMyNumberOfApprovedComplaints($id){
+        $approved_complaints = Complaints::join('contracts','contracts.id','complaints.contract_id')
+        ->join('users','users.id','complaints.created_by')
+        ->where('complaints.status','solved')
+        ->where('users.id',$id)->count();
+        
+        return $approved_complaints;
+    }
+    
+    protected function getMyPendingComplaints($id){
+        $pending_complaints = Complaints::join('contracts','contracts.id','complaints.contract_id')
+        ->join('users','users.id','complaints.created_by')
+        ->where('complaints.status','pending')
+        ->where('users.id',$id)
+        ->select('complaints.*')
+        ->get();
+        return $pending_complaints;
+    }
+    
+    protected function getMySolvedComplaints($id){
+        $solved_complaints = Complaints::join('contracts','contracts.id','complaints.contract_id')
+        ->join('users','users.id','complaints.created_by')
+        ->where('complaints.status','solved')
+        ->where('users.id',$id)
+        ->select('complaints.*')->get();
+        
+        return response()->json($solved_complaints);
+    }
+    
+    protected function complainApi($id){
+        if(!empty(request()->complaint_proof)){
+            $contract = request()->complaint_proof;
+            $contract_original_name = $contract->getClientOriginalName();
+            $contract->move('complaint_attachments/',$contract_original_name);
+        }else{
+            $contract_original_name = null;
+        }
+        
+        $violated_contract = DB::table('contracts')->where('clause_title',request()->complaint_type)->value('id');
+        $complaint = new Complaints;
+        $complaint->contract_id = $violated_contract;
+        $complaint->complaint = request()->complaint_description;
+        $complaint->created_by = $id;
+        $complaint->evidence = $contract_original_name;
+        $complaint->save();
+        
+        return "saved";
+    }
+    
+    protected function getMyStatistics($id){
+        return $this->getMyNumberOfComplaints($id) . "<>". $this->getMyNumberOfPendingComplaints($id) . "<>" . $this->getMyNumberOfApprovedComplaints($id);
+    }
+    
+    protected function playVideo($complaint_id){
+        $evidence = Complaints::where('id',$complaint_id)->value('evidence');
+        return view('admin.play_video',compact('evidence'));
+    }
 }
